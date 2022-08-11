@@ -35,12 +35,6 @@
   },
   // The "include" for the root is for typechecking the entire project (it includes directories like "tests" which
   // the package-level tsconfigs don't include)
-  "include": [
-    "./packages/node-library-template/src",
-    "./packages/react-library-template/src",
-    "./demos/demo-react16-cra/src",
-    "./demos/demo-react17-cra/src",
-    "./demos/demo-react18-vite/src"
-  ],
+  "include": ["./packages/changesets-format-with-git-links/src"],
   "exclude": ["node_modules"]
 }

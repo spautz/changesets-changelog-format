@@ -4,7 +4,7 @@ module.exports = {
   root: true,
   parser: '@typescript-eslint/parser',
   plugins: ['@typescript-eslint'],
-  extends: ['eslint:recommended', 'plugin:@typescript-eslint/recommended', /* 'react-app', */ 'prettier'],
+  extends: ['eslint:recommended', 'plugin:@typescript-eslint/recommended',   'prettier'],
 
 
   rules: {
@@ -15,8 +15,6 @@ module.exports = {
         varsIgnorePattern: '^_',
       },
     ],
-    /* 'react/jsx-uses-react': 'error', */
-    /* 'react/jsx-uses-vars': 'error', */
   },
   overrides: [
     {
@@ -26,21 +24,6 @@ module.exports = {
         '@typescript-eslint/no-var-requires': 'off',
       },
     },
-    {
-      files: ['**/*.test.*', '**/__tests__/*.*'],
-      env: {
-        jest: true,
-      },
-    },
-     /* {
-        files: ['**\/*.jsx', '**\/*.tsx'],
-       plugins: ['@typescript-eslint', 'react'],
-       extends: ['eslint:recommended', 'plugin:@typescript-eslint/recommended', 'react-app', 'prettier'],
-       rules: {
-         'react/jsx-uses-react': 'error',
-         'react/jsx-uses-vars': 'error',
-       },
-     }, */
   ],
 
   ignorePatterns: [

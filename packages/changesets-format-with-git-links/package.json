@@ -1,15 +1,15 @@
 {
-  "name": "@package-template/node-library-template",
+  "name": "changesets-format-with-git-links",
   "version": "0.0.1",
-  "description": "My opinionated template for a single-package repo",
+  "description": "A changelog formatter for Changesets that adds commit and issue/PR links",
   "keywords": [],
   "license": "MIT",
-  "homepage": "https://github.com/spautz/package-template/packages/node-library-template#readme",
-  "bugs": "https://github.com/spautz/package-template/issues",
+  "homepage": "https://github.com/spautz/changesets-format-with-git-links/packages/changesets-format-with-git-links#readme",
+  "bugs": "https://github.com/spautz/changesets-format-with-git-links/issues",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/spautz/package-template.git",
-    "directory": "packages/node-library-template"
+    "url": "git+https://github.com/spautz/changesets-format-with-git-links.git",
+    "directory": "packages/changesets-format-with-git-links"
   },
   "author": {
     "name": "Steven Pautz",
@@ -77,7 +77,7 @@
   },
   "devDependencies": {},
   "peerDependencies": {},
-  "typesVersions123": {
+  "typesVersions": {
     "<4.0": {
       "*": [
         "legacy-types/ts3.5/index.d.ts"

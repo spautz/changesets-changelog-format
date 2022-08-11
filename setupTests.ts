@@ -1,1 +1,1 @@
-import 'packages/react-library-template/setupTests';
+import 'packages/changesets-format-with-git-links/setupTests';
