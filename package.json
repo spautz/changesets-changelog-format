@@ -1,0 +1,114 @@
+{
+  "name": "@spautz/package-template-workspace",
+  "private": true,
+  "version": "0.0.1",
+  "description": "My opinionated template for a single-package repo",
+  "license": "MIT",
+  "homepage": "https://github.com/spautz/package-template#readme",
+  "bugs": "https://github.com/spautz/package-template/issues",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/spautz/package-template.git"
+  },
+  "author": {
+    "name": "Steven Pautz",
+    "url": "http://stevenpautz.com/"
+  },
+  "engines": {
+    "node": "^14 || ^16 || ^18",
+    "pnpm": "^7"
+  },
+  "packageManager": "pnpm@7.8.0",
+  "type": "module",
+  "scripts": {
+    "____ HOOKS _________________________________________________________": "",
+    "preinstall": "npx only-allow pnpm",
+    "prepare": "husky install",
+    "husky:precommit": "lint-staged",
+    "husky:prepush": "pnpm run format:verify && pnpm run types && pnpm run lint",
+    "____ MAIN __________________________________________________________": "",
+    "test": "pnpm run test:coverage",
+    "____ BATCH COMMANDS FOR PACKAGES ___________________________________": "",
+    "packages:clean": "pnpm --parallel -r run clean",
+    "packages:build": "pnpm -r run build",
+    "packages:test": "pnpm -r run test:coverage",
+    "packages:test:coverage": "pnpm -r run test:coverage",
+    "packages:test:quick": "pnpm --parallel -r run test:quick",
+    "packages:all": "pnpm -r run all",
+    "packages:all:readonly": "pnpm -r run all:readonly",
+    "packages:all:quick": "pnpm --parallel -r run all:quick",
+    "packages:all:ci": "pnpm -r run all:ci",
+    "____ INTEGRATION ___________________________________________________": "",
+    "clean": "pnpm run test:clean && rimraf ./node_modules/.cache ./*.log && pnpm run packages:clean",
+    "all": "pnpm run format                 && pnpm run types && pnpm run lint:fix && pnpm run test:coverage && pnpm run packages:build",
+    "all:readonly": "pnpm run format:verify && pnpm run types && pnpm run lint     && pnpm run test:quick",
+    "all:quick": "pnpm run format           && pnpm run types && pnpm run lint:fix",
+    "all:ci": "pnpm run format:verify       && pnpm run types && pnpm run lint     && pnpm run test:ci       && pnpm run packages:build && (pnpm run changelog status; true)",
+    "____ INDIVIDUAL COMMANDS ___________________________________________": "",
+    "changelog": "changeset",
+    "format": "prettier --write .",
+    "format:verify": "prettier --list-different .",
+    "lint": "eslint . --max-warnings 0",
+    "lint:fix": "eslint . --max-warnings 0 --fix",
+    "release:prep": "changeset status --verbose && changeset version",
+    "test:clean": "rimraf ./coverage",
+    "test:ci": "pnpm run test:clean            && vitest run --coverage",
+    "test:coverage": "pnpm run test:clean      && vitest run --coverage",
+    "test:quick": "pnpm run test:clean         && vitest run --coverage=false",
+    "test:watch": "pnpm run test:clean         && vitest watch --coverage=false",
+    "test:watchcoverage": "pnpm run test:clean && vitest watch --coverage",
+    "types": "tsc -p ./tsconfig.json --noEmit"
+  },
+  "devDependencies": {
+    "@changesets/cli": "^2.24.2",
+    "@changesets/types": "^5.1.0",
+    "@tsconfig/recommended": "^1.0.1",
+    "@types/testing-library__jest-dom": "^5.14.5",
+    "@typescript-eslint/eslint-plugin": "^5.32.0",
+    "@typescript-eslint/parser": "^5.32.0",
+    "c8": "^7.12.0",
+    "downlevel-dts": "^0.10.0",
+    "eslint": "^8.21.0",
+    "eslint-config-prettier": "^8.5.0",
+    "gitlog": "^4.0.4",
+    "husky": "^8.0.1",
+    "lint-staged": "^13.0.3",
+    "prettier": "^2.7.1",
+    "rimraf": "^3.0.2",
+    "tsup": "^6.2.1",
+    "typescript": "^4.7.4",
+    "vitest": "^0.21.1"
+  },
+  "lint-staged": {
+    "*.{css,html,js,jsx,json,less,md,scss,ts,tsx,yaml}": [
+      "prettier --write"
+    ],
+    "*.{js,jsx,ts,tsx}": [
+      "eslint --max-warnings 0"
+    ]
+  },
+  "pnpm": {
+    "overrides": {
+      "@types/react": "^18.0.17",
+      "@types/react-dom": "^18.0.6"
+    },
+    "packageExtensions": {
+      "@testing-library/react": {
+        "peerDependencies": {
+          "react": "*",
+          "react-dom": "*"
+        }
+      },
+      "eslint-plugin-flowtype": {
+        "peerDependenciesMeta": {
+          "@babel/plugin-syntax-flow": {
+            "optional": true
+          },
+          "@babel/plugin-transform-react-jsx": {
+            "optional": true
+          }
+        }
+      }
+    }
+  }
+}
