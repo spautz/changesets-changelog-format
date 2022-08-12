@@ -1,6 +1,6 @@
 {
   "name": "changesets-format-with-git-links",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A changelog formatter for Changesets that adds commit and issue/PR links",
   "keywords": [],
   "license": "MIT",
@@ -44,7 +44,7 @@
   "scripts": {
     "____ HOOKS _________________________________________________________": "",
     "prepare": "pnpm run build",
-    "prepack": "pnpm run clean && pnpm run dev:readonly",
+    "prepack": "pnpm run all:readonly",
     "____ MAIN __________________________________________________________": "",
     "build": "pnpm run build:clean && pnpm run build:main && pnpm run build:types",
     "test": "pnpm run test:coverage",
