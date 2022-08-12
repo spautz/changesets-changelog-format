@@ -1,5 +1,5 @@
 {
-  "name": "@spautz/private-workspace",
+  "name": "@spautz/changesets-changelog-formatters",
   "private": true,
   "version": "0.0.1",
   "description": "A changelog formatter for Changesets that adds commit and issue/PR links",

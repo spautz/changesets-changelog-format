@@ -75,6 +75,9 @@
     "test:watchcoverage": "pnpm run test:clean && vitest watch --coverage",
     "types": "tsc -p ./tsconfig.json --noEmit"
   },
+  "dependencies": {
+    "find-up": "^6.3.0"
+  },
   "devDependencies": {},
   "peerDependencies": {},
   "typesVersions": {
