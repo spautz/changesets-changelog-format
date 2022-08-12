@@ -46,6 +46,12 @@ importers:
       typescript: 4.7.4
       vitest: 0.21.1_c8@7.12.0+jsdom@20.0.0
 
+  demos/pending-changelog-demo:
+    specifiers:
+      changesets-format-with-git-links: workspace:^
+    devDependencies:
+      changesets-format-with-git-links: link:../../packages/changesets-format-with-git-links
+
   packages/changesets-format-with-git-links:
     specifiers:
       find-up: ^6.3.0
