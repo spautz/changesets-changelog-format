@@ -1,6 +1,6 @@
 {
   "name": "changesets-format-with-git-links",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "A changelog formatter for Changesets that adds commit and issue/PR links",
   "keywords": [],
   "license": "MIT",

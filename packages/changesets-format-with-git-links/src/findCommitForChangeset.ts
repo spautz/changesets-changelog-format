@@ -12,10 +12,10 @@ export type CommitInfo = {
 };
 
 let defaultGitlogOptions: GitlogOptions<keyof CommitInfo>;
-const getDefaultGitlogOptions = (): GitlogOptions<keyof CommitInfo> => {
+const getDefaultGitlogOptions = async (): Promise<GitlogOptions<keyof CommitInfo>> => {
   if (!defaultGitlogOptions) {
     defaultGitlogOptions = {
-      repo: findRepoRoot(),
+      repo: await findRepoRoot(),
       number: 1,
       fields: ['hash', 'abbrevHash', 'subject'] as Array<keyof CommitInfo>,
       includeMergeCommitFiles: true,
@@ -24,17 +24,17 @@ const getDefaultGitlogOptions = (): GitlogOptions<keyof CommitInfo> => {
   return defaultGitlogOptions;
 };
 
-const findCommitForChangeset = (
+const findCommitForChangeset = async (
   changesetEntry: NewChangesetWithCommit,
   _options: Options,
-): CommitInfo | null => {
+): Promise<CommitInfo | null> => {
   const { id } = changesetEntry;
 
   try {
     // @TODO: Split between modes: predefined commit, file-add, file-update
 
     const commits = gitlog({
-      ...getDefaultGitlogOptions(),
+      ...(await getDefaultGitlogOptions()),
       file: `.changeset${path.sep}${id}.md`,
     });
     return commits.length ? commits[0] : null;

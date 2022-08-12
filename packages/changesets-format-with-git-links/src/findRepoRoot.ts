@@ -1,13 +1,13 @@
-import { findUpSync, pathExistsSync } from 'find-up';
 import path from 'node:path';
+import { findUp, pathExists } from 'find-up';
 
 /**
- * Starting from the current directory, synchronously walks up until it finds the `.git` directory.
+ * Starting from the current directory, hronously walks up until it finds the `.git` directory.
  */
-const findRepoRoot = (): string => {
-  const repoRoot = findUpSync(
-    (directory) => {
-      const hasGitDir = pathExistsSync(path.join(directory, '.git'));
+const findRepoRoot = async (): Promise<string> => {
+  const repoRoot = await findUp(
+    async (directory) => {
+      const hasGitDir = await pathExists(path.join(directory, '.git'));
       if (hasGitDir) {
         return directory;
       }

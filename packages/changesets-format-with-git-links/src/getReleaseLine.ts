@@ -7,14 +7,14 @@ const getReleaseLine = async (
   changeset: NewChangesetWithCommit,
   _type: VersionType,
   options: Options | null,
-) => {
+): Promise<string> => {
   const optionsWithDefaults = options
     ? {
         ...defaultOptions,
         ...options,
       }
     : defaultOptions;
-  const commitInfo = findCommitForChangeset(changeset, optionsWithDefaults);
+  const commitInfo = await findCommitForChangeset(changeset, optionsWithDefaults);
 
   const [firstLine, ...futureLines] = changeset.summary.split('\n').map((l) => l.trimEnd());
 
