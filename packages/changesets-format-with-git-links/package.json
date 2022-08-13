@@ -1,6 +1,6 @@
 {
   "name": "changesets-format-with-git-links",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "A changelog formatter for Changesets that adds commit and issue/PR links",
   "keywords": [],
   "license": "MIT",
@@ -76,10 +76,14 @@
     "types": "tsc -p ./tsconfig.json --noEmit"
   },
   "dependencies": {
-    "find-up": "^6.3.0"
+    "gitlog": "^4.0.4"
   },
-  "devDependencies": {},
-  "peerDependencies": {},
+  "devDependencies": {
+    "@changesets/types": "5.1.0"
+  },
+  "peerDependencies": {
+    "@changesets/cli": "^2.0.0"
+  },
   "typesVersions": {
     "<4.0": {
       "*": [

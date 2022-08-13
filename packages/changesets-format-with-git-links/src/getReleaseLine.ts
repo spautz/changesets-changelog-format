@@ -1,40 +1,13 @@
 import { NewChangesetWithCommit, VersionType } from '@changesets/types';
 
-import { findCommitForChangeset } from './findCommitForChangeset';
+import { findCommitForChangeset } from './internals/findCommitForChangeset';
+import { processTemplate } from './internals/processTemplate';
 import { Options, defaultOptions } from './options';
-
-// @TODO: typings
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const processTemplate = (template: string | undefined, data: any): string => {
-  console.log('processTemplate()', template, data);
-
-  if (!template) {
-    return '';
-  } else if (!template.includes('$')) {
-    return template;
-  } else {
-    // Replace any vars (excluding `\$`) with their data
-    return template.replace(/(?!\\\$)\$\w+/g, (token) => {
-      const varName = token.substring(1);
-      if (!Object.prototype.hasOwnProperty.call(data, varName)) {
-        throw new Error(
-          `Invalid template variable: ${JSON.stringify(
-            token,
-          )}. Please use \\$ if this is not a variable.`,
-        );
-      }
-
-      console.log('replacer', token, data[varName]);
-
-      return data[varName];
-    });
-  }
-};
 
 const getReleaseLine = async (
   changeset: NewChangesetWithCommit,
   _type: VersionType,
-  options: Options | null,
+  options: Partial<Options> | null,
 ): Promise<string> => {
   const optionsWithDefaults = options
     ? {
@@ -49,13 +22,18 @@ const getReleaseLine = async (
 
   const [firstLine, ...futureLines] = changeset.summary.split('\n').map((l) => l.trimEnd());
 
+  const issueMatch = firstLine.match(/\(#\d+\)/);
+  if (issueMatch) {
+    commitInfo.issueNum = issueMatch[0].substring(1);
+  }
+
   // @TODO: typings
   const templateData = {
     ...optionsWithDefaults,
     ...commitInfo,
   };
 
-  let returnVal = `- ${firstLine}  ${commitInfo ? `[${commitInfo.abbrevHash}]: ` : ''}`;
+  let returnVal = `- ${firstLine}`;
   if (commitInfo) {
     // Append issue, if present
     if (commitInfo.issueNum) {
@@ -74,7 +52,6 @@ const getReleaseLine = async (
     returnVal += `\n${futureLines.map((l) => `  ${l}`).join('\n')}`;
   }
 
-  console.log(' => ', JSON.stringify(returnVal));
   return returnVal;
 };
 

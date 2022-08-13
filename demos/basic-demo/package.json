@@ -1,0 +1,75 @@
+{
+  "name": "@changesets-changelog-formatters/basic-demo",
+  "version": "0.1.0",
+  "description": "A demo library which has several pending changelog entries.",
+  "keywords": [],
+  "license": "MIT",
+  "homepage": "https://github.com/spautz/changesets-format-with-git-links/packages/basic-demo#readme",
+  "bugs": "https://github.com/spautz/changesets-format-with-git-links/issues",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/spautz/changesets-format-with-git-links.git",
+    "directory": "packages/basic-demo"
+  },
+  "author": {
+    "name": "Steven Pautz",
+    "url": "https://github.com/spautz/"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": [
+    "dist/",
+    "docs/",
+    "legacy-types/",
+    "src/",
+    "LICENSE",
+    "*.md"
+  ],
+  "source": "./src/index.ts",
+  "type": "module",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs",
+      "types": "./dist/index.d.ts"
+    },
+    "./package.json": "./package.json"
+  },
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "jsnext:main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "sideEffects": false,
+  "scripts": {
+    "release:prep": "changeset status --verbose && changeset version"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@changesets/cli": "2.24.2",
+    "changesets-format-with-git-links": "workspace:^"
+  },
+  "peerDependencies": {},
+  "typesVersions": {
+    "<4.0": {
+      "*": [
+        "legacy-types/ts3.5/index.d.ts"
+      ]
+    },
+    "<4.5": {
+      "*": [
+        "legacy-types/ts4.0/index.d.ts"
+      ]
+    },
+    "<4.7": {
+      "*": [
+        "legacy-types/ts4.5/index.d.ts"
+      ]
+    },
+    "*": {
+      "*": [
+        "dist/index.d.ts"
+      ]
+    }
+  }
+}
