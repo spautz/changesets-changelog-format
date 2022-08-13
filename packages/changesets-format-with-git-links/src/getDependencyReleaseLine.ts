@@ -18,7 +18,6 @@ const getDependencyReleaseLine = async (
   );
 
   const result = [...changesetLinks, ...updatedDepenenciesList].join('\n');
-  console.log(' => ', JSON.stringify(result));
   return result;
 };
 

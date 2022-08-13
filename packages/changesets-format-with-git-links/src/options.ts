@@ -1,6 +1,18 @@
 // @TODO
-export type Options = Record<string, never>;
+export type Options = {
+  repoHref?: string;
+  commitTemplate?: string;
+  commitMissingTemplate?: string;
+  issueTemplate?: string;
+  issueMissingTemplate?: string;
+};
 
-const defaultOptions: Options = {};
+const defaultOptions: Options = {
+  repoHref: undefined,
+  commitTemplate: ' ([$abbrevHash]($repoHref/commit/$hash))',
+  commitMissingTemplate: '',
+  issueTemplate: ' ([$issueNum]($repoHref/issues/$issueNum))',
+  issueMissingTemplate: '',
+};
 
 export { defaultOptions };

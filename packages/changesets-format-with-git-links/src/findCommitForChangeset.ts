@@ -5,19 +5,27 @@ import path from 'node:path';
 import { findRepoRoot } from './findRepoRoot';
 import { Options } from './options';
 
-export type CommitInfo = {
+type GitlogInfo = {
+  // Fields from the commit
   hash: string;
   abbrevHash: string;
   subject: string;
 };
 
-let defaultGitlogOptions: GitlogOptions<keyof CommitInfo>;
-const getDefaultGitlogOptions = async (): Promise<GitlogOptions<keyof CommitInfo>> => {
+export type CommitInfo = GitlogInfo & {
+  // Metadata and context
+  issueNum: string | null;
+};
+
+export type IssueInfo = Record<string, never>;
+
+let defaultGitlogOptions: GitlogOptions<keyof GitlogInfo>;
+const getDefaultGitlogOptions = async (): Promise<GitlogOptions<keyof GitlogInfo>> => {
   if (!defaultGitlogOptions) {
     defaultGitlogOptions = {
       repo: await findRepoRoot(),
       number: 1,
-      fields: ['hash', 'abbrevHash', 'subject'] as Array<keyof CommitInfo>,
+      fields: ['hash', 'abbrevHash', 'subject'] as Array<keyof GitlogInfo>,
       includeMergeCommitFiles: true,
     };
   }
@@ -37,7 +45,19 @@ const findCommitForChangeset = async (
       ...(await getDefaultGitlogOptions()),
       file: `.changeset${path.sep}${id}.md`,
     });
-    return commits.length ? commits[0] : null;
+    if (!commits || !commits.length) {
+      return null;
+    }
+
+    const commitInfo = {
+      ...commits[0],
+      issueNum: null,
+    };
+
+    // @TODO
+    // commitInfo.issueNum = null;
+
+    return commitInfo;
   } catch (e) {
     console.error(e);
     return null;
