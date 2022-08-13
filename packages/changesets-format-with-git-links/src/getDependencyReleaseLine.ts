@@ -1,4 +1,6 @@
 import { NewChangesetWithCommit, ModCompWithPackage } from '@changesets/types';
+import { getReleaseLine } from './getReleaseLine';
+import { UserOptions } from './options';
 
 /**
  * Duplicated verbatim from Changesets
@@ -6,11 +8,19 @@ import { NewChangesetWithCommit, ModCompWithPackage } from '@changesets/types';
 const getDependencyReleaseLine = async (
   changesets: NewChangesetWithCommit[],
   dependenciesUpdated: ModCompWithPackage[],
+  userOptions: Partial<UserOptions> | null,
 ) => {
   if (dependenciesUpdated.length === 0) return '';
 
-  const changesetLinks = changesets.map(
-    (changeset) => `- Updated dependencies${changeset.commit ? ` [${changeset.commit}]` : ''}`,
+  const changesetLinks = await Promise.all(
+    changesets.map(async (changeset) => {
+      return await getReleaseLine(
+        // @TODO: Make summary configurable
+        { ...changeset, summary: 'Updated dependencies' },
+        'patch',
+        userOptions,
+      );
+    }),
   );
 
   const updatedDepenenciesList = dependenciesUpdated.map(

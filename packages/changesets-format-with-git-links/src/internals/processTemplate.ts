@@ -7,12 +7,11 @@ const processTemplate = (template: string | null, data: Record<string, unknown>)
     return template;
   } else {
     // Replace any vars (excluding `\$`) with their data
-    return template.replace(/(?!\\\$)\$\w+/g, (token) => {
-      const varName = token.substring(1);
+    return template.replace(/(?!\\\$)\$(\w+)/g, (_matchedText, varName) => {
       if (!hasOwnProperty.call(data, varName)) {
         throw new Error(
           `Invalid template variable: ${JSON.stringify(
-            token,
+            varName,
           )}. Please use \\$ if this is not a variable.`,
         );
       }
