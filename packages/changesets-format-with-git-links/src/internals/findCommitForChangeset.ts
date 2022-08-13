@@ -2,14 +2,14 @@ import { NewChangesetWithCommit } from '@changesets/types';
 import { gitlogPromise } from 'gitlog';
 import path from 'node:path';
 
-import { Options } from '../options';
+import { SystemOptions } from '../options';
 
 const findCommitForChangeset = async (
   changesetEntry: NewChangesetWithCommit,
-  options: Options,
+  systemOptions: SystemOptions,
 ): Promise<ReturnType<typeof gitlogPromise> | null> => {
   const { id } = changesetEntry;
-  const { gitlogOptions } = options;
+  const { gitlogOptions } = systemOptions;
 
   // @TODO: Split between modes: predefined commit, file-add, file-update
 
