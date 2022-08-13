@@ -1,73 +1,27 @@
 import { NewChangesetWithCommit } from '@changesets/types';
-import gitlog, { GitlogOptions } from 'gitlog';
+import gitlog from 'gitlog';
 import path from 'node:path';
 
-// import { findRepoRoot } from './findRepoRoot';
 import { Options } from '../options';
-
-type GitlogInfo = {
-  // Fields from the commit
-  hash: string;
-  abbrevHash: string;
-  subject: string;
-};
-
-export type CommitInfo = GitlogInfo & {
-  // Metadata and context
-  issueNum: string | null;
-};
-
-export type IssueInfo = Record<string, never>;
-
-let defaultGitlogOptions: GitlogOptions<keyof GitlogInfo>;
-const getDefaultGitlogOptions = async (): Promise<GitlogOptions<keyof GitlogInfo>> => {
-  if (!defaultGitlogOptions) {
-    defaultGitlogOptions = {
-      // repo: await findRepoRoot(),
-      repo: '.',
-      number: 1,
-      fields: ['hash', 'abbrevHash', 'subject'] as Array<keyof GitlogInfo>,
-      includeMergeCommitFiles: true,
-    };
-  }
-  return defaultGitlogOptions;
-};
 
 const findCommitForChangeset = async (
   changesetEntry: NewChangesetWithCommit,
-  _options: Options,
-): Promise<CommitInfo | null> => {
+  options: Options,
+): Promise<ReturnType<typeof gitlog> | null> => {
   const { id } = changesetEntry;
+  const { gitlogOptions } = options;
 
-  // try {
   // @TODO: Split between modes: predefined commit, file-add, file-update
 
-  console.log('searching for...', {
-    ...(await getDefaultGitlogOptions()),
-    file: `.changeset${path.sep}${id}.md`,
-  });
-
   const commits = gitlog({
-    ...(await getDefaultGitlogOptions()),
+    ...gitlogOptions,
     file: `.changeset${path.sep}${id}.md`,
   });
   if (!commits || !commits.length) {
     return null;
   }
 
-  const commitInfo = {
-    ...commits[0],
-    issueNum: null,
-  };
-
-  // @TODO
-  // commitInfo.issueNum = null;
-
-  return commitInfo;
-  // } catch (e) {
-  //   console.error(e);
-  //   return null;
-  // }
+  return commits[0];
 };
 
-export { findCommitForChangeset, getDefaultGitlogOptions };
+export { findCommitForChangeset };

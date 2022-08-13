@@ -1,6 +1,6 @@
 const { hasOwnProperty } = Object.prototype;
 
-const processTemplate = (template: string | undefined, data: Record<string, unknown>): string => {
+const processTemplate = (template: string | null, data: Record<string, unknown>): string => {
   if (!template) {
     return '';
   } else if (!template.includes('$')) {

@@ -13,7 +13,6 @@ const changelogFunctions = {
 
 // All of these exports are for convenience only
 export * from './internals/findCommitForChangeset';
-export * from './internals/findRepoRoot';
 export * from './internals/processTemplate';
 export * from './getReleaseLine';
 export * from './getDependencyReleaseLine';

@@ -7,7 +7,7 @@ import { Options, defaultOptions } from './options';
 const getReleaseLine = async (
   changeset: NewChangesetWithCommit,
   _type: VersionType,
-  options: Options | null,
+  options: Partial<Options> | null,
 ): Promise<string> => {
   const optionsWithDefaults = options
     ? {
@@ -20,9 +20,12 @@ const getReleaseLine = async (
 
   const commitInfo = await findCommitForChangeset(changeset, optionsWithDefaults);
 
-  console.log(JSON.stringify({ changeset, commitInfo }));
-
   const [firstLine, ...futureLines] = changeset.summary.split('\n').map((l) => l.trimEnd());
+
+  const issueMatch = firstLine.match(/\(#\d+\)/);
+  if (issueMatch) {
+    commitInfo.issueNum = issueMatch[0].substring(1);
+  }
 
   // @TODO: typings
   const templateData = {
@@ -49,7 +52,6 @@ const getReleaseLine = async (
     returnVal += `\n${futureLines.map((l) => `  ${l}`).join('\n')}`;
   }
 
-  console.log(' => ', JSON.stringify(returnVal));
   return returnVal;
 };
 
