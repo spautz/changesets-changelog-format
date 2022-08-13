@@ -70,7 +70,6 @@
     "downlevel-dts": "0.10.0",
     "eslint": "8.21.0",
     "eslint-config-prettier": "8.5.0",
-    "gitlog": "4.0.4",
     "husky": "8.0.1",
     "jsdom": "20.0.0",
     "lint-staged": "13.0.3",
