@@ -3,7 +3,7 @@ import gitlog, { GitlogOptions } from 'gitlog';
 import path from 'node:path';
 
 import { findRepoRoot } from './findRepoRoot';
-import { Options } from './options';
+import { Options } from '../options';
 
 type GitlogInfo = {
   // Fields from the commit
