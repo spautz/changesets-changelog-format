@@ -20,7 +20,7 @@ const defaultOptions: Options = {
   // Default: a github-style issue link inside parentheses
   // "([#1](https://github.com/spautz/changesets-format-with-git-links/issues/1))"
   // "([#1](https://github.com/spautz/changesets-format-with-git-links/issues/1))"
-  issueTemplate: ' ([#$issueNum]($repoIssueBaseUrl/$issueNum))',
+  issueTemplate: ' ([#$issueNum]($repoIssueBaseUrl/\\$/$issueNum))',
   issueMissingTemplate: '',
 };
 

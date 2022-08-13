@@ -20,6 +20,8 @@ const getReleaseLine = async (
 
   const commitInfo = await findCommitForChangeset(changeset, optionsWithDefaults);
 
+  console.log(JSON.stringify({ changeset, commitInfo }));
+
   const [firstLine, ...futureLines] = changeset.summary.split('\n').map((l) => l.trimEnd());
 
   // @TODO: typings
@@ -28,7 +30,7 @@ const getReleaseLine = async (
     ...commitInfo,
   };
 
-  let returnVal = `- ${firstLine}  ${commitInfo ? `[${commitInfo.abbrevHash}]: ` : ''}`;
+  let returnVal = `- ${firstLine}`;
   if (commitInfo) {
     // Append issue, if present
     if (commitInfo.issueNum) {

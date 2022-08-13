@@ -8,7 +8,7 @@ const findRepoRoot = async (): Promise<string> => {
 
   const repoRoot = await findUp(
     async (directory) => {
-      const hasGitDir = await pathExists(path.join(directory, '.git'));
+      const hasGitDir = await pathExists(path.join(directory, '.changeset'));
       if (hasGitDir) {
         return directory;
       }
@@ -21,7 +21,8 @@ const findRepoRoot = async (): Promise<string> => {
     throw new Error('Unable to find repo root');
   }
 
-  return repoRoot;
+  // return repoRoot;
+  return __dirname;
 };
 
 export { findRepoRoot };
