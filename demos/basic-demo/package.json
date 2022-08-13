@@ -1,15 +1,15 @@
 {
-  "name": "@changesets-changelog-formatters/pending-changelog-demo",
+  "name": "@changesets-changelog-formatters/basic-demo",
   "version": "0.1.0",
   "description": "A demo library which has several pending changelog entries.",
   "keywords": [],
   "license": "MIT",
-  "homepage": "https://github.com/spautz/changesets-format-with-git-links/packages/pending-changelog-demo#readme",
+  "homepage": "https://github.com/spautz/changesets-format-with-git-links/packages/basic-demo#readme",
   "bugs": "https://github.com/spautz/changesets-format-with-git-links/issues",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/spautz/changesets-format-with-git-links.git",
-    "directory": "packages/pending-changelog-demo"
+    "directory": "packages/basic-demo"
   },
   "author": {
     "name": "Steven Pautz",
@@ -42,11 +42,7 @@
   "types": "./dist/index.d.ts",
   "sideEffects": false,
   "scripts": {
-    "____ INTEGRATION ___________________________________________________": "",
-    "all:ci": "pnpm run release:prep && pnpm run test:ci",
-    "____ INDIVIDUAL COMMANDS ___________________________________________": "",
-    "release:prep": "changeset status --verbose && changeset version",
-    "test:ci": "echo 'TODO: make sure changelog matches expected content' && cat ./CHANGELOG.md"
+    "release:prep": "changeset status --verbose && changeset version"
   },
   "dependencies": {},
   "devDependencies": {
