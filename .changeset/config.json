@@ -1,5 +1,12 @@
 {
   "$schema": "https://unpkg.com/@changesets/config@2.1.1/schema.json",
+  "changelog": [
+    "changesets-format-with-git-links",
+    {
+      "repoCommitBaseUrl": "https://github.com/spautz/changesets-format-with-git-links/commit",
+      "repoIssueBaseUrl": "https://github.com/spautz/changesets-format-with-git-links/issues"
+    }
+  ],
   "commit": false,
   "fixed": [],
   "linked": [],

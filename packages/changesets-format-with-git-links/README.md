@@ -33,6 +33,8 @@ npm install --save-dev changesets-format-with-git-links
   "changelog": [
     "changesets-format-with-git-links",
     {
+      "repoCommitBaseUrl": "https://github.com/your-username/repo/commit",
+      "repoIssueBaseUrl": "https://github.com/your-username/repo/issues"
       /* options here */
     }
   ]
