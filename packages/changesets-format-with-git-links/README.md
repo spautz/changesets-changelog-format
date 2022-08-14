@@ -3,9 +3,9 @@
 A changelog formatter for [Changesets](https://github.com/changesets/changesets) that adds commit and issue/PR links
 
 [![npm version](https://img.shields.io/npm/v/changesets-format-with-git-links.svg)](https://www.npmjs.com/package/changesets-format-with-git-links)
-[![build status](https://github.com/spautz/changesets-format-with-git-links/workflows/CI/badge.svg)](https://github.com/spautz/changesets-format-with-git-links/actions)
+[![build status](https://github.com/spautz/changesets-changelog-format/workflows/CI/badge.svg)](https://github.com/spautz/changesets-changelog-format/actions)
 [![dependencies status](https://img.shields.io/librariesio/release/npm/changesets-format-with-git-links.svg)](https://libraries.io/github/spautz/changesets-format-with-git-links)
-[![test coverage](https://img.shields.io/coveralls/github/spautz/changesets-format-with-git-links/main.svg)](https://coveralls.io/github/spautz/changesets-format-with-git-links?branch=main)
+[![test coverage](https://img.shields.io/coveralls/github/spautz/changesets-changelog-format/main.svg)](https://coveralls.io/github/spautz/changesets-changelog-format?branch=main)
 
 ## What is this?
 
@@ -27,7 +27,7 @@ You do _not_ need to enable the `commit` option in your config.
 npm install --save-dev changesets-format-with-git-links
 ```
 
-```json lines
+```
 // .changeset/config.json
 {
   "changelog": [
@@ -45,11 +45,11 @@ npm install --save-dev changesets-format-with-git-links
 
 #### `repoCommitBaseUrl` (required)
 
-The base url -- including `https` -- which should be used for commit links. Example: `"https://github.com/spautz/changesets-format-with-git-links/commit"`
+The base url -- including `https` -- which should be used for commit links. Example: `"https://github.com/spautz/changesets-changelog-format/commit"`
 
 #### `repoIssueBaseUrl` (required)
 
-The base url -- including `https` -- which should be used for issue links. Example: `"https://github.com/spautz/changesets-format-with-git-links/issues"`
+The base url -- including `https` -- which should be used for issue links. Example: `"https://github.com/spautz/changesets-changelog-format/issues"`
 
 #### `commitTemplate` (default: `" ([$abbrevHash]($repoCommitBaseUrl/$hash))"`)
 
@@ -64,7 +64,7 @@ Text to add to the changeset entry when no commit could be found. This should ge
 Regular expression (without the leading and trailing `/`) used to identify issues and pull requests in the subject line of a commit message.
 The default will match a number immediately followed by a closing parentheses, like `#4)`.
 
-If the commit message matches this pattern, the text inside the capturing group (`()`) will be available as `$issueNum` in the `issueTemplate`, below.
+If the commit message matches this pattern, the text inside the capturing group (`(\d+)` above) will be available as `$issueNum` in the `issueTemplate`, below.
 
 #### `issueTemplate` (default: `" ([#$issueNum]($repoIssueBaseUrl/$issueNum))"`)
 
@@ -89,7 +89,7 @@ Default:
 
 Options passed to [gitlog](https://github.com/domharrington/node-gitlog) ([see docs here](https://github.com/domharrington/node-gitlog#options)).
 
-This can be used to [add additional `fields`](https://github.com/domharrington/node-gitlog#optional-fields) to the template, or to change the
+This can be used to [add additional `fields`](https://github.com/domharrington/node-gitlog#user-content-optional-fields) to the template, or to change the
 behavior of the git log search.
 
 ## How it works

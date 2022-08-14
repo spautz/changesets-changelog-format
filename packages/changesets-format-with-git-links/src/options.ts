@@ -26,7 +26,7 @@ const defaultOptions: UserOptions = {
 
   // Default: a github-style commit link inside parentheses
   // "([6ecbcfc](https://example.com/commit/6ecbcfca21152a929393a7c5fc7184b34122bbe5))"
-  // "([6ecbcfc](https://github.com/spautz/changesets-format-with-git-links/commit/6ecbcfca21152a929393a7c5fc7184b34122bbe5))"
+  // "([6ecbcfc](https://github.com/spautz/changesets-changelog-format/commit/6ecbcfca21152a929393a7c5fc7184b34122bbe5))"
   commitTemplate: ' ([$abbrevHash]($repoCommitBaseUrl/$hash))',
   noCommitTemplate: '',
 
@@ -34,7 +34,7 @@ const defaultOptions: UserOptions = {
   issuePattern: '#(\\d+)\\)',
   // Default: a github-style issue link inside parentheses
   // "([#1](https://example.com/issues/1))"
-  // "([#1](https://github.com/spautz/changesets-format-with-git-links/issues/1))"
+  // "([#1](https://github.com/spautz/changesets-changelog-format/issues/1))"
   issueTemplate: ' ([#$issueNum]($repoIssueBaseUrl/$issueNum))',
   noIssueTemplate: '',
 
