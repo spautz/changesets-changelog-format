@@ -1,5 +1,5 @@
 {
-  "name": "@changesets-changelog-formatters/basic-demo",
+  "name": "@spautz/changesets-changelog-format--basic-demo",
   "private": true,
   "version": "0.1.0",
   "description": "A demo library which has several pending changelog entries.",

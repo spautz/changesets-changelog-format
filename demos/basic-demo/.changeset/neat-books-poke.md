@@ -1,5 +1,5 @@
 ---
-'@changesets-changelog-formatters/basic-demo': minor
+'@spautz/changesets-changelog-format--basic-demo': minor
 ---
 
 Added some minor changes
