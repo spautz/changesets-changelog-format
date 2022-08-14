@@ -4,11 +4,11 @@
   "description": "A changelog formatter for Changesets that adds commit and issue/PR links",
   "keywords": [],
   "license": "MIT",
-  "homepage": "https://github.com/spautz/changesets-format-with-git-links/packages/changesets-format-with-git-links#readme",
-  "bugs": "https://github.com/spautz/changesets-format-with-git-links/issues",
+  "homepage": "https://github.com/spautz/changesets-changelog-format/packages/changesets-format-with-git-links#readme",
+  "bugs": "https://github.com/spautz/changesets-changelog-format/issues",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/spautz/changesets-format-with-git-links.git",
+    "url": "git+https://github.com/spautz/changesets-changelog-format.git",
     "directory": "packages/changesets-format-with-git-links"
   },
   "author": {

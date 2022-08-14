@@ -1,14 +1,15 @@
 {
   "name": "@changesets-changelog-formatters/basic-demo",
+  "private": true,
   "version": "0.1.0",
   "description": "A demo library which has several pending changelog entries.",
   "keywords": [],
   "license": "MIT",
-  "homepage": "https://github.com/spautz/changesets-format-with-git-links/packages/basic-demo#readme",
-  "bugs": "https://github.com/spautz/changesets-format-with-git-links/issues",
+  "homepage": "https://github.com/spautz/changesets-changelog-format/packages/basic-demo#readme",
+  "bugs": "https://github.com/spautz/changesets-changelog-format/issues",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/spautz/changesets-format-with-git-links.git",
+    "url": "git+https://github.com/spautz/changesets-changelog-format.git",
     "directory": "packages/basic-demo"
   },
   "author": {

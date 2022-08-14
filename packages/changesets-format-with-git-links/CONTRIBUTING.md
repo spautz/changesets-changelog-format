@@ -6,12 +6,12 @@ By contributing to changesets-format-with-git-links, you agree to abide by the [
 
 ## Reporting Bugs and Asking Questions
 
-Before opening an issue, please search the [issue tracker](https://github.com/spautz/changesets-format-with-git-links/issues)
+Before opening an issue, please search the [issue tracker](https://github.com/spautz/changesets-changelog-format/issues)
 to make sure your issue hasn't already been reported.
 
 ### New Features and Ideas
 
-If you are proposing a new feature, make sure to [open an issue](https://github.com/spautz/changesets-format-with-git-links/issues/new/choose)
+If you are proposing a new feature, make sure to [open an issue](https://github.com/spautz/changesets-changelog-format/issues/new/choose)
 to discuss your idea and make sure it is inline with the project goals.
 
 ## Setup and Development
@@ -19,9 +19,9 @@ to discuss your idea and make sure it is inline with the project goals.
 1. Fork this repository to your own GitHub account and clone it to your local device:
 
    ```
-   git clone https://github.com/your-name/changesets-format-with-git-links.git
-   cd changesets-format-with-git-links
-   git remote add upstream https://github.com/spautz/changesets-format-with-git-links.git
+   git clone https://github.com/your-name/changesets-changelog-format.git
+   cd changesets-changelog-format
+   git remote add upstream https://github.com/spautz/changesets-changelog-format.git
    ```
 
 2. Install the dependencies and ensure everything runs properly:
@@ -58,11 +58,11 @@ Your pull request is more likely to be accepted if this passes for your branch.
 
 In general, the contribution workflow looks like this:
 
-1. Open a new issue in the [Issue tracker](https://github.com/spautz/changesets-format-with-git-links/issues).
+1. Open a new issue in the [Issue tracker](https://github.com/spautz/changesets-changelog-format/issues).
 2. Fork the repo and set up your local development environment.
 3. Make changes in a branch in your fork.
 4. Make sure all tests pass and there are no errors.
-5. Submit a [pull request](https://github.com/spautz/changesets-format-with-git-links/pulls), referencing any issues it addresses.
+5. Submit a [pull request](https://github.com/spautz/changesets-changelog-format/pulls), referencing any issues it addresses.
 
 Please try to keep your pull request focused in scope and avoid including unrelated commits.
 
