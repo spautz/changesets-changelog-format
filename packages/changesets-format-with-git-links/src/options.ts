@@ -2,15 +2,16 @@
 import { GitlogOptions } from 'gitlog';
 
 export type UserOptions = {
-  repoCommitBaseUrl: string;
-  repoIssueBaseUrl: string;
+  repoBaseUrl: string;
+
+  changesetTemplate: string;
 
   commitTemplate: string | null;
-  noCommitTemplate: string | null;
+  commitMissingTemplate: string | null;
 
-  issuePattern: string;
+  issuePattern: string | null;
   issueTemplate: string | null;
-  noIssueTemplate: string | null;
+  issueMissingTemplate: string | null;
 
   gitlogOptions: GitlogOptions;
 };
@@ -21,22 +22,23 @@ export type SystemOptions = UserOptions & {
 
 // @TODO: Docs
 const defaultOptions: UserOptions = {
-  repoCommitBaseUrl: 'https://example.com/commit',
-  repoIssueBaseUrl: 'https://example.com/issues',
+  repoBaseUrl: 'https://example.com',
+
+  changesetTemplate: '- $firstLine$issueContent$commitContent$rest',
 
   // Default: a github-style commit link inside parentheses
   // "([6ecbcfc](https://example.com/commit/6ecbcfca21152a929393a7c5fc7184b34122bbe5))"
   // "([6ecbcfc](https://github.com/spautz/changesets-changelog-format/commit/6ecbcfca21152a929393a7c5fc7184b34122bbe5))"
-  commitTemplate: ' ([$abbrevHash]($repoCommitBaseUrl/$hash))',
-  noCommitTemplate: '',
+  commitTemplate: ' ([$abbrevHash]($repoBaseUrl/commit/$hash))',
+  commitMissingTemplate: '',
 
   // Number with closing parens, like `#4)`
   issuePattern: '#(\\d+)\\)',
   // Default: a github-style issue link inside parentheses
   // "([#1](https://example.com/issues/1))"
   // "([#1](https://github.com/spautz/changesets-changelog-format/issues/1))"
-  issueTemplate: ' ([#$issueNum]($repoIssueBaseUrl/$issueNum))',
-  noIssueTemplate: '',
+  issueTemplate: ' ([#$issueNum]($repoBaseUrl/issues/$issueNum))',
+  issueMissingTemplate: '',
 
   gitlogOptions: {
     repo: '.',
@@ -59,7 +61,9 @@ const processOptions = (overrides: Partial<UserOptions> | null): SystemOptions =
     : ({ ...defaultOptions } as SystemOptions);
 
   // Transform pattern strings into real Regexes
-  optionsWithDefaults.issueRegex = new RegExp(optionsWithDefaults.issuePattern);
+  if (optionsWithDefaults.issuePattern) {
+    optionsWithDefaults.issueRegex = new RegExp(optionsWithDefaults.issuePattern);
+  }
 
   return optionsWithDefaults;
 };

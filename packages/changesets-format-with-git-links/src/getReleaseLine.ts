@@ -13,17 +13,17 @@ const getReleaseLine = async (
 
   const {
     commitTemplate,
-    noCommitTemplate,
+    commitMissingTemplate,
     issueRegex,
     issueTemplate,
-    noIssueTemplate,
+    issueMissingTemplate,
     ...otherOptions
   } = systemOptions;
 
   const commitInfo = await findCommitForChangeset(changeset, systemOptions);
   const { subject } = commitInfo;
 
-  const issueMatch = subject.match(issueRegex);
+  const issueMatch = issueRegex && subject.match(issueRegex);
   if (issueMatch) {
     commitInfo.issueNum = issueMatch[1];
   }
@@ -43,13 +43,13 @@ const getReleaseLine = async (
     if (commitInfo.issueNum) {
       returnVal += processTemplate(issueTemplate, templateData);
     } else {
-      returnVal += processTemplate(noIssueTemplate, templateData);
+      returnVal += processTemplate(issueMissingTemplate, templateData);
     }
 
     // Append commit, if present
     returnVal += processTemplate(commitTemplate, templateData);
   } else {
-    returnVal += processTemplate(noCommitTemplate, templateData);
+    returnVal += processTemplate(commitMissingTemplate, templateData);
   }
 
   if (futureLines.length > 0) {

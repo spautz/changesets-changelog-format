@@ -33,8 +33,7 @@ npm install --save-dev changesets-format-with-git-links
   "changelog": [
     "changesets-format-with-git-links",
     {
-      "repoCommitBaseUrl": "https://github.com/your-username/repo/commit",
-      "repoIssueBaseUrl": "https://github.com/your-username/repo/issues"
+      "repoBaseUrl": "https://github.com/your-username/repo",
       /* options here */
     }
   ]
@@ -43,19 +42,15 @@ npm install --save-dev changesets-format-with-git-links
 
 ## Options
 
-#### `repoCommitBaseUrl` (required)
+#### `repoBaseUrl` (required)
 
-The base url -- including `https` -- which should be used for commit links. Example: `"https://github.com/spautz/changesets-changelog-format/commit"`
+The base url -- including `https` -- which can be used to build links in `commitTemplate` and `issueTemplate`. Example: `"https://github.com/spautz/changesets-changelog-format"`
 
-#### `repoIssueBaseUrl` (required)
-
-The base url -- including `https` -- which should be used for issue links. Example: `"https://github.com/spautz/changesets-changelog-format/issues"`
-
-#### `commitTemplate` (default: `" ([$abbrevHash]($repoCommitBaseUrl/$hash))"`)
+#### `commitTemplate` (default: `" ([$abbrevHash]($repoBaseUrl/commit/$hash))"`)
 
 Text to add to the changeset entry for a commit. See `gitlogOptions` below for information on the available fields.
 
-#### `noCommitTemplate` (default: `""`)
+#### `commitMissingTemplate` (default: `""`)
 
 Text to add to the changeset entry when no commit could be found. This should generally be left blank.
 
@@ -64,13 +59,13 @@ Text to add to the changeset entry when no commit could be found. This should ge
 Regular expression (without the leading and trailing `/`) used to identify issues and pull requests in the subject line of a commit message.
 The default will match a number immediately followed by a closing parentheses, like `#4)`.
 
-If the commit message matches this pattern, the text inside the capturing group (`(\d+)` above) will be available as `$issueNum` in the `issueTemplate`, below.
+If the commit message matches this pattern, the text inside the capturing group (`(\d+)` in the default) will be available as `$issueNum` in the `issueTemplate`, below.
 
-#### `issueTemplate` (default: `" ([#$issueNum]($repoIssueBaseUrl/$issueNum))"`)
+#### `issueTemplate` (default: `" ([#$issueNum]($repoBaseUrl/issues/$issueNum))"`)
 
 Text to add to the changeset entry for an issue or pull request. See `gitlogOptions` below for information on the available fields.
 
-#### `noIssueTemplate` (default: `""`)
+#### `issueMissingTemplate` (default: `""`)
 
 Text to add to the changeset entry when no issue or pull request could be found. This should generally be left blank.
 
@@ -99,8 +94,8 @@ and then using templates to append the git links (commit and issue number, if pr
 
 ## Template variables
 
-Inside `commitTemplate`, `noCommitTemplate`, `issueTemplate`, and `noIssueTemplate`, any token that starts with `$` will be treated
+Inside `commitTemplate`, `commitMissingTemplate`, `issueTemplate`, and `issueMissingTemplate`, any token that starts with `$` will be treated
 as a variable. Use `\\$` to escape the dollar sign character if you do not want it to be treated as a variable.
 
 All fields from the git commit (such as `$hash`, `$abbrevHash`, and anything you added to `gitlogOptions.fields`) are available
-as template variables, along with any other values from the options (such as `$repoCommitBaseUrl`), including custom or unrecognized options.
+as template variables, along with any other values from the options (such as `$repoBaseUrl`), including custom or unrecognized options.
