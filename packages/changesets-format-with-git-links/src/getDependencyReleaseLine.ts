@@ -8,7 +8,7 @@ import { UserOptions } from './options';
 const getDependencyReleaseLine = async (
   changesets: NewChangesetWithCommit[],
   dependenciesUpdated: ModCompWithPackage[],
-  userOptions: Partial<UserOptions> | null,
+  userOptions: UserOptions,
 ) => {
   if (dependenciesUpdated.length === 0) return '';
 

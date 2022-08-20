@@ -1,7 +1,7 @@
 // @TODO: Docs
 import { GitlogOptions } from 'gitlog';
 
-export type UserOptions = {
+export type SystemOptions = {
   repoBaseUrl: string;
 
   changesetTemplate: string;
@@ -16,14 +16,13 @@ export type UserOptions = {
   gitlogOptions: GitlogOptions;
 };
 
-export type SystemOptions = UserOptions & {
-  issueRegex: RegExp;
-};
+export type UserOptions = Partial<SystemOptions> | null;
 
 // @TODO: Docs
-const defaultOptions: UserOptions = {
+const defaultOptions: SystemOptions = {
   repoBaseUrl: 'https://example.com',
 
+  // @TODO: Implement this
   changesetTemplate: '- $firstLine$issueContent$commitContent$rest',
 
   // Default: a github-style commit link inside parentheses
@@ -37,7 +36,7 @@ const defaultOptions: UserOptions = {
   // Default: a github-style issue link inside parentheses
   // "([#1](https://example.com/issues/1))"
   // "([#1](https://github.com/spautz/changesets-changelog-format/issues/1))"
-  issueTemplate: ' ([#$issueNum]($repoBaseUrl/issues/$issueNum))',
+  issueTemplate: ' ([#$issue]($repoBaseUrl/issues/$issue))',
   issueMissingTemplate: '',
 
   gitlogOptions: {
@@ -48,7 +47,7 @@ const defaultOptions: UserOptions = {
   },
 };
 
-const processOptions = (overrides: Partial<UserOptions> | null): SystemOptions => {
+const processOptions = (overrides: UserOptions): SystemOptions => {
   const optionsWithDefaults: SystemOptions = overrides
     ? ({
         ...defaultOptions,
@@ -59,11 +58,6 @@ const processOptions = (overrides: Partial<UserOptions> | null): SystemOptions =
         },
       } as SystemOptions)
     : ({ ...defaultOptions } as SystemOptions);
-
-  // Transform pattern strings into real Regexes
-  if (optionsWithDefaults.issuePattern) {
-    optionsWithDefaults.issueRegex = new RegExp(optionsWithDefaults.issuePattern);
-  }
 
   return optionsWithDefaults;
 };

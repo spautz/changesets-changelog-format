@@ -59,9 +59,9 @@ Text to add to the changeset entry when no commit could be found. This should ge
 Regular expression (without the leading and trailing `/`) used to identify issues and pull requests in the subject line of a commit message.
 The default will match a number immediately followed by a closing parentheses, like `#4)`.
 
-If the commit message matches this pattern, the text inside the capturing group (`(\d+)` in the default) will be available as `$issueNum` in the `issueTemplate`, below.
+If the commit message matches this pattern, the text inside the capturing group (`(\d+)` in the default) will be available as `$issue` in the `issueTemplate`, below.
 
-#### `issueTemplate` (default: `" ([#$issueNum]($repoBaseUrl/issues/$issueNum))"`)
+#### `issueTemplate` (default: `" ([#$issue]($repoBaseUrl/issues/$issue))"`)
 
 Text to add to the changeset entry for an issue or pull request. See `gitlogOptions` below for information on the available fields.
 

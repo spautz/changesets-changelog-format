@@ -7,14 +7,14 @@ import { UserOptions, processOptions } from './options';
 const getReleaseLine = async (
   changeset: NewChangesetWithCommit,
   _type: VersionType,
-  userOptions: Partial<UserOptions> | null,
+  userOptions: UserOptions,
 ): Promise<string> => {
   const systemOptions = processOptions(userOptions);
 
   const {
     commitTemplate,
     commitMissingTemplate,
-    issueRegex,
+    issuePattern,
     issueTemplate,
     issueMissingTemplate,
     ...otherOptions
@@ -23,9 +23,13 @@ const getReleaseLine = async (
   const commitInfo = await findCommitForChangeset(changeset, systemOptions);
   const { subject } = commitInfo;
 
-  const issueMatch = issueRegex && subject.match(issueRegex);
-  if (issueMatch) {
-    commitInfo.issueNum = issueMatch[1];
+  // Transform pattern strings into real Regexes
+  if (issuePattern) {
+    const issueRegex = new RegExp(issuePattern);
+    const issueMatch = subject.match(issueRegex);
+    if (issueMatch) {
+      commitInfo.issue = issueMatch[1];
+    }
   }
 
   const [firstLine, ...futureLines] = changeset.summary.split('\n').map((l) => l.trimEnd());
@@ -40,7 +44,7 @@ const getReleaseLine = async (
   let returnVal = `- ${firstLine}`;
   if (commitInfo) {
     // Append issue, if present
-    if (commitInfo.issueNum) {
+    if (commitInfo.issue) {
       returnVal += processTemplate(issueTemplate, templateData);
     } else {
       returnVal += processTemplate(issueMissingTemplate, templateData);
