@@ -12,15 +12,17 @@ const getReleaseLine = async (
   const systemOptions = processOptions(userOptions);
 
   const {
+    // @TODO: changesetTemplate,
     commitTemplate,
     commitMissingTemplate,
+    gitlogOptions,
     issuePattern,
     issueTemplate,
     issueMissingTemplate,
     ...otherOptions
   } = systemOptions;
 
-  const commitInfo = await findCommitForChangeset(changeset, systemOptions);
+  const commitInfo = await findCommitForChangeset(changeset, gitlogOptions);
   const { subject } = commitInfo;
 
   // Transform pattern strings into real Regexes

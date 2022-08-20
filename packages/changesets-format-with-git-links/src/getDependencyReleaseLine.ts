@@ -3,7 +3,7 @@ import { getReleaseLine } from './getReleaseLine';
 import { UserOptions } from './options';
 
 /**
- * Duplicated verbatim from Changesets
+ * This is heavily based on Changesets' default `getDependencyReleaseLine`
  */
 const getDependencyReleaseLine = async (
   changesets: NewChangesetWithCommit[],
@@ -15,9 +15,8 @@ const getDependencyReleaseLine = async (
   const changesetLinks = await Promise.all(
     changesets.map(async (changeset) => {
       return await getReleaseLine(
-        // @TODO: Make summary configurable
         { ...changeset, summary: 'Updated dependencies' },
-        'patch',
+        'none',
         userOptions,
       );
     }),

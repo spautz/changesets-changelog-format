@@ -9,12 +9,12 @@ A changelog formatter for [Changesets](https://github.com/changesets/changesets)
 
 ## What is this?
 
-[Atlassian Changesets](https://github.com/changesets/changesets) is a changelog management tool. Its default changelog formatter
+[Atlassian Changesets](https://github.com/changesets/changesets) is a changelog management tool. Its default changelog formatter only
 generates a plain list of changes.
 
-**This package adds links to the git commits, issues, and pull requests where your changesets were added.**
+This package adds links to the git commits, issues, and pull requests where your changesets were added.
 
-The result is comparable to the output of other common changelog managers, such as [standard-version](https://github.com/conventional-changelog/standard-version/blob/master/CHANGELOG.md)
+The result is similar to the output of other common changelog managers, such as [standard-version](https://github.com/conventional-changelog/standard-version/blob/master/CHANGELOG.md)
 and [Release Please](https://github.com/googleapis/release-please/blob/main/CHANGELOG.md).
 
 ## Setup

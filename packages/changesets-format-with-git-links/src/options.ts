@@ -22,7 +22,6 @@ export type UserOptions = Partial<SystemOptions> | null;
 const defaultOptions: SystemOptions = {
   repoBaseUrl: 'https://example.com',
 
-  // @TODO: Implement this
   changesetTemplate: '- $firstLine$issueContent$commitContent$rest',
 
   // Default: a github-style commit link inside parentheses
@@ -39,9 +38,17 @@ const defaultOptions: SystemOptions = {
   issueTemplate: ' ([#$issue]($repoBaseUrl/issues/$issue))',
   issueMissingTemplate: '',
 
+  // @TODO
+  // pullRequest: {
+  //   pattern: '#(\\d+)\\)',
+  //   template: ' ([#$issue]($repoBaseUrl/issues/$issue))',
+  //   nullTemplate: '',
+  // },
+
   gitlogOptions: {
     repo: '.',
     number: 1,
+    // https://github.com/domharrington/node-gitlog#user-content-optional-fields
     fields: ['hash', 'abbrevHash', 'subject'],
     includeMergeCommitFiles: true,
   },
