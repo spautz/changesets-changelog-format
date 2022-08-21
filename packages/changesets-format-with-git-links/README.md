@@ -35,8 +35,7 @@ npm install --save-dev changesets-format-with-git-links
     "changesets-format-with-git-links",
     {
       "repoBaseUrl": "https://github.com/your-username/repo",
-      // This will inject issue and commit links to the end of the first line of your changeset message
-      "changesetTemplate": "- ${changesetTitle}${issue}${commit}${changesetBody}"
+      // additional options here
     }
   ]
 }
@@ -136,6 +135,6 @@ Information from the git commit when the changeset was added or modified:
 Information from the matched issue pattern, if any:
 
 - `$issue` is generated from `issueTemplate` (or `issueMissingTemplate` if no issue not found)
-- `$issueMatch` contains all of the results from the match against `issuePattern` (e.g., `${issueMatch[1]}`})
+- `$issueMatch` contains all of the results from the match against `issuePattern` (e.g., `${issueMatch[1]}`)
 
 And also any additional values you added to the options in your `.changeset/config.json` (such as `$repoBaseUrl`)
