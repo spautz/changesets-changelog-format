@@ -1,6 +1,6 @@
 {
   "name": "changesets-format-with-git-links",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "A changelog formatter for Changesets that adds commit and issue/PR links",
   "keywords": [],
   "license": "MIT",
@@ -66,7 +66,6 @@
     "format:verify": "prettier --list-different .",
     "lint": "eslint . --max-warnings 0",
     "lint:fix": "eslint . --max-warnings 0 --fix",
-    "release:changelog": "standard-version --skip.commit --skip.tag --release-as ",
     "test:clean": "rimraf ./coverage",
     "test:ci": "pnpm run test:clean            && vitest run --coverage",
     "test:coverage": "pnpm run test:clean      && vitest run --coverage",
