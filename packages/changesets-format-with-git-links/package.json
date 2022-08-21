@@ -76,10 +76,12 @@
     "types": "tsc -p ./tsconfig.json --noEmit"
   },
   "dependencies": {
-    "gitlog": "^4.0.4"
+    "gitlog": "^4.0.4",
+    "lodash": "^4.17.21"
   },
   "devDependencies": {
-    "@changesets/types": "5.1.0"
+    "@changesets/types": "5.1.0",
+    "@types/lodash": "^4.14.184"
   },
   "peerDependencies": {
     "@changesets/cli": "^2.0.0"

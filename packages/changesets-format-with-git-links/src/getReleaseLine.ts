@@ -71,34 +71,7 @@ const getReleaseLine = async (
     }
   }
 
-  console.log('templateData = ', templateData);
-
   return processTemplate(changesetTemplate, templateData);
-
-  /*
-  // @TODO: make this overrideable
-  let returnVal = `- ${firstLine}`;
-  if (commitInfo) {
-    // Append issue, if present
-    if (commitInfo.issue) {
-      returnVal += processTemplate(issueTemplate, templateData);
-    } else {
-      returnVal += processTemplate(issueMissingTemplate, templateData);
-    }
-
-    // Append commit, if present
-    returnVal += processTemplate(commitTemplate, templateData);
-  } else {
-    returnVal += processTemplate(commitMissingTemplate, templateData);
-  }
-
-  if (futureLines.length > 0) {
-    returnVal += `\n${futureLines.map((l) => `  ${l}`).join('\n')}`;
-  }
-
-  return returnVal;
-
-   */
 };
 
 export { getReleaseLine };

@@ -9,12 +9,13 @@ A changelog formatter for [Changesets](https://github.com/changesets/changesets)
 
 ## What is this?
 
-[Atlassian Changesets](https://github.com/changesets/changesets) is a changelog management tool. Its default changelog formatter
-generates a plain list of changes.
+[Atlassian Changesets](https://github.com/changesets/changesets) is a changelog management tool. Its default changelog
+formatter only generates a plain list of changes.
 
-**This package adds links to the git commits, issues, and pull requests where your changesets were added.**
+This package adds links to the git commits, issues, and pull requests where your changesets were added.
 
-The result is comparable to the output of other common changelog managers, such as [standard-version](https://github.com/conventional-changelog/standard-version/blob/master/CHANGELOG.md)
+The result is similar to the output of other common changelog managers, such as
+[standard-version](https://github.com/conventional-changelog/standard-version/blob/master/CHANGELOG.md)
 and [Release Please](https://github.com/googleapis/release-please/blob/main/CHANGELOG.md).
 
 ## Setup
@@ -34,7 +35,8 @@ npm install --save-dev changesets-format-with-git-links
     "changesets-format-with-git-links",
     {
       "repoBaseUrl": "https://github.com/your-username/repo",
-      /* options here */
+      // This will inject issue and commit links to the end of the first line of your changeset message
+      "changesetTemplate": "- ${changesetTitle}${issue}${commit}${changesetBody}"
     }
   ]
 }
@@ -44,30 +46,42 @@ npm install --save-dev changesets-format-with-git-links
 
 #### `repoBaseUrl` (required)
 
-The base url -- including `https` -- which can be used to build links in `commitTemplate` and `issueTemplate`. Example: `"https://github.com/spautz/changesets-changelog-format"`
+A base url -- including `https` -- which can be used to build links in `commitTemplate` and `issueTemplate`.
+Example: `"https://github.com/spautz/changesets-changelog-format"`
+
+#### `changesetTemplate` (default: `"- ${changesetTitle}${issue}${commit}${changesetBody}"`)
+
+Content that will be added to your changelog.
+
+With the deafult value, issue and commit links will be inserted at the end of the first line of your changeset message.
+
+See `commitTemplate` for the `$commit` variable, `issueTemplate` for the `$issue` variable, and [Template Variables](#template-variables)
+for other available values.
 
 #### `commitTemplate` (default: `" ([$abbrevHash]($repoBaseUrl/commit/$hash))"`)
 
-Text to add to the changeset entry for a commit. See `gitlogOptions` below for information on the available fields.
+Content for the `$commit` variable, based on the commit when the changeset was created.
+See `gitlogOptions` below for information on the available fields from the commit.
 
 #### `commitMissingTemplate` (default: `""`)
 
-Text to add to the changeset entry when no commit could be found. This should generally be left blank.
+Content for the `$commit` variable when no commit could be found. This should generally be left blank.
 
 #### `issuePattern` (default: `"#(\\d+)\\)"`)
 
-Regular expression (without the leading and trailing `/`) used to identify issues and pull requests in the subject line of a commit message.
-The default will match a number immediately followed by a closing parentheses, like `#4)`.
+Regular expression (without the leading and trailing `/`) used to identify issues and pull requests in the subject line
+of a commit message. The default will match a number immediately followed by a closing parentheses, like `#4)`.
 
-If the commit message matches this pattern, the text inside the capturing group (`(\d+)` in the default) will be available as `$issue` in the `issueTemplate`, below.
+If the commit message matches this pattern, the Regex result will be available as `$issueMatch` and the text inside the
+capturing group (`(\d+)` in the default) will be available as `$issue` in the `issueTemplate`, below.
 
 #### `issueTemplate` (default: `" ([#$issue]($repoBaseUrl/issues/$issue))"`)
 
-Text to add to the changeset entry for an issue or pull request. See `gitlogOptions` below for information on the available fields.
+Content for the `$issue` variable, based on the value matched by `issuePattern`.
 
 #### `issueMissingTemplate` (default: `""`)
 
-Text to add to the changeset entry when no issue or pull request could be found. This should generally be left blank.
+Content for the `$issue` variable when no issue or pull request could be found. This should generally be left blank.
 
 #### `gitlogOptions`
 
@@ -94,8 +108,34 @@ and then using templates to append the git links (commit and issue number, if pr
 
 ## Template variables
 
-Inside `commitTemplate`, `commitMissingTemplate`, `issueTemplate`, and `issueMissingTemplate`, any token that starts with `$` will be treated
-as a variable. Use `\\$` to escape the dollar sign character if you do not want it to be treated as a variable.
+Inside any of the templates (`changesetTemplate`, `commitTemplate`, `commitMissingTemplate`, `issueTemplate`, or `issueMissingTemplate`),
+any token that starts with `$` or which is wrapped within `${...}` will be treated as a variable.
 
-All fields from the git commit (such as `$hash`, `$abbrevHash`, and anything you added to `gitlogOptions.fields`) are available
-as template variables, along with any other values from the options (such as `$repoBaseUrl`), including custom or unrecognized options.
+Use `\\$` to escape the dollar sign character if you do not want it to be treated as a variable.
+
+### Available variables
+
+Information from the changeset entry:
+
+- `$changesetTitle`
+- `$changesetBody`
+- `$changesetRawBody`
+- `$versionType`
+- `$changesetInfo` contains all of the above, and any other [information from Changesets](https://github.com/changesets/changesets/blob/main/packages/types/src/index.ts#L28-L31)
+  (e.g., `${changesetInfo.changesetTitle}`, `${changesetInfo.versionType}`).
+
+Information from the git commit when the changeset was added or modified:
+
+- `$hash`
+- `$abbrevHash`
+- `$summary`
+- Anything you requested via [`gitlogOptions.fields`](#gitlogoptions)
+- `$commit` is generated from `commitTemplate` (or `commitMissingTemplate` if the commit was not found)
+- `$commitInfo` contains all of the above (e.g., `${commitInfo.abbrevHash}`, `${commitInfo.hash}`).
+
+Information from the matched issue pattern, if any:
+
+- `$issue` is generated from `issueTemplate` (or `issueMissingTemplate` if no issue not found)
+- `$issueMatch` contains all of the results from the match against `issuePattern` (e.g., `${issueMatch[1]}`})
+
+And also any additional values you added to the options in your `.changeset/config.json` (such as `$repoBaseUrl`)

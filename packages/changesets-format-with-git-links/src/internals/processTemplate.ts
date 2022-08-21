@@ -1,4 +1,5 @@
-const { hasOwnProperty } = Object.prototype;
+import get from 'lodash/get';
+import has from 'lodash/has';
 
 /**
  * Match simple variables, like `$foo`
@@ -15,8 +16,8 @@ const processVariable = (
   _matchedText: string,
   varName: string,
 ): string => {
-  if (hasOwnProperty.call(data, varName)) {
-    return '' + data[varName];
+  if (has(data, varName)) {
+    return '' + get(data, varName);
   } else {
     throw new Error(
       `Invalid template variable: ${JSON.stringify(
@@ -27,8 +28,6 @@ const processVariable = (
 };
 
 const processTemplate = (template: string | null, data: Record<string, unknown>): string => {
-  console.log('processTemplate()', template, data);
-
   if (!template) {
     return '';
   } else if (!template.includes('$')) {
@@ -36,12 +35,9 @@ const processTemplate = (template: string | null, data: Record<string, unknown>)
   } else {
     // Replace any vars (excluding `\$`) with their data
     const replacerFn = processVariable.bind(null, data);
-    const result = template
+    return template
       .replace(simpleVariableRegex, replacerFn)
       .replace(wrappedVariableRegex, replacerFn);
-
-    console.log(' => ', result);
-    return result;
   }
 };
 

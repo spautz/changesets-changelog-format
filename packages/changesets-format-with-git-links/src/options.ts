@@ -22,7 +22,8 @@ export type UserOptions = Partial<SystemOptions> | null;
 const defaultOptions: SystemOptions = {
   repoBaseUrl: 'https://example.com',
 
-  changesetTemplate: '- ${changesetTitle}${issue}${commit}${changesetBody}',
+  changesetTemplate:
+    '- ${changesetTitle}${issue}${commit}  ${issueMatch[0]} ${issueMatch[1]}-${changesetInfo.versionType}-${commitInfo.hash}  ${changesetBody}',
 
   // Default: a github-style commit link inside parentheses
   // "([6ecbcfc](https://example.com/commit/6ecbcfca21152a929393a7c5fc7184b34122bbe5))"
