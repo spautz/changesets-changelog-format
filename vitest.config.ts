@@ -9,7 +9,12 @@ export default defineConfig({
     setupFiles: './setupTests.ts',
 
     coverage: {
-      exclude: [...configDefaults.exclude, '**/__tests__/**', '**/legacy-types/**'],
+      exclude: [
+        ...configDefaults.exclude,
+        '**/__tests__/**',
+        '**/legacy-types/**',
+        'setupTests.ts',
+      ],
       reporter: ['html', 'lcov'],
     },
   },
