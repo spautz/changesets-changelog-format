@@ -3,8 +3,7 @@
   "changelog": [
     "changesets-format-with-git-links",
     {
-      "repoCommitBaseUrl": "https://github.com/spautz/changesets-changelog-format/commit",
-      "repoIssueBaseUrl": "https://github.com/spautz/changesets-changelog-format/issues"
+      "repoBaseUrl": "https://github.com/spautz/changesets-changelog-format/"
     }
   ],
   "commit": false,

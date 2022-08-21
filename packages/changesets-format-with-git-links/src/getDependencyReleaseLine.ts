@@ -3,21 +3,20 @@ import { getReleaseLine } from './getReleaseLine';
 import { UserOptions } from './options';
 
 /**
- * Duplicated verbatim from Changesets
+ * This is heavily based on Changesets' default `getDependencyReleaseLine`
  */
 const getDependencyReleaseLine = async (
   changesets: NewChangesetWithCommit[],
   dependenciesUpdated: ModCompWithPackage[],
-  userOptions: Partial<UserOptions> | null,
+  userOptions: UserOptions,
 ) => {
   if (dependenciesUpdated.length === 0) return '';
 
   const changesetLinks = await Promise.all(
     changesets.map(async (changeset) => {
       return await getReleaseLine(
-        // @TODO: Make summary configurable
         { ...changeset, summary: 'Updated dependencies' },
-        'patch',
+        'none',
         userOptions,
       );
     }),
