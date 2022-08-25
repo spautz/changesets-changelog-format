@@ -16,32 +16,8 @@
     "name": "Steven Pautz",
     "url": "https://github.com/spautz/"
   },
-  "publishConfig": {
-    "access": "public"
-  },
-  "files": [
-    "dist/",
-    "docs/",
-    "legacy-types/",
-    "src/",
-    "LICENSE",
-    "*.md"
-  ],
   "source": "./src/index.ts",
   "type": "module",
-  "exports": {
-    ".": {
-      "import": "./dist/index.js",
-      "require": "./dist/index.cjs",
-      "types": "./dist/index.d.ts"
-    },
-    "./package.json": "./package.json"
-  },
-  "main": "./dist/index.cjs",
-  "module": "./dist/index.js",
-  "jsnext:main": "./dist/index.js",
-  "types": "./dist/index.d.ts",
-  "sideEffects": false,
   "scripts": {
     "release:prep": "changeset status --verbose && changeset version"
   },
