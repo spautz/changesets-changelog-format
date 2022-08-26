@@ -1,6 +1,8 @@
 import { NewChangesetWithCommit } from '@changesets/types';
-import { GitlogOptions, gitlogPromise } from 'gitlog';
+import { gitlogPromise } from 'gitlog';
 import path from 'node:path';
+
+import { GitlogOptions } from '../options';
 
 const findCommitForChangeset = async (
   changesetEntry: NewChangesetWithCommit,
