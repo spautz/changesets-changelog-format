@@ -20,7 +20,14 @@ export type SystemOptions = {
   gitlogOptions: GitlogOptions;
 };
 
-export type UserOptions = Partial<SystemOptions> | null;
+// A fake recursive partial of UserOptions, allowing arbitrary keys at the root.
+// And sometimes `null` because options aren't mandatory.
+export type UserOptions = Partial<
+  Omit<SystemOptions, 'gitlogOptions'> & {
+    gitlogOptions?: Partial<SystemOptions['gitlogOptions']>;
+    [newKey: string]: unknown;
+  }
+> | null;
 
 // @TODO: Docs
 const defaultOptions: SystemOptions = {
