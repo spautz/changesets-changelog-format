@@ -1,5 +1,9 @@
-// @TODO: Docs
-import { GitlogOptions } from 'gitlog';
+import { CommitField, GitlogOptions as DefaultGitlogOptions } from 'gitlog';
+import merge from 'lodash/merge';
+import uniq from 'lodash/uniq';
+
+// the default GitlogOptions typing only allows the default field names: this one supports all valid ones
+export type GitlogOptions = DefaultGitlogOptions<CommitField>;
 
 export type SystemOptions = {
   repoBaseUrl: string;
@@ -16,7 +20,14 @@ export type SystemOptions = {
   gitlogOptions: GitlogOptions;
 };
 
-export type UserOptions = Partial<SystemOptions> | null;
+// A fake recursive partial of UserOptions, allowing arbitrary keys at the root.
+// And sometimes `null` because options aren't mandatory.
+export type UserOptions = Partial<
+  Omit<SystemOptions, 'gitlogOptions'> & {
+    gitlogOptions?: Partial<SystemOptions['gitlogOptions']>;
+    [newKey: string]: unknown;
+  }
+> | null;
 
 // @TODO: Docs
 const defaultOptions: SystemOptions = {
@@ -49,22 +60,15 @@ const defaultOptions: SystemOptions = {
     repo: '.',
     number: 1,
     // https://github.com/domharrington/node-gitlog#user-content-optional-fields
-    fields: ['hash', 'abbrevHash', 'subject'],
+    fields: ['hash', 'abbrevHash', 'authorName', 'authorEmail', 'authorDate', 'subject'],
     includeMergeCommitFiles: true,
   },
 };
 
 const processOptions = (overrides: UserOptions): SystemOptions => {
-  const optionsWithDefaults: SystemOptions = overrides
-    ? ({
-        ...defaultOptions,
-        ...overrides,
-        gitlogOptions: {
-          ...defaultOptions.gitlogOptions,
-          ...overrides.gitlogOptions,
-        },
-      } as SystemOptions)
-    : ({ ...defaultOptions } as SystemOptions);
+  // Merge options, then dedupe any gitlog fields
+  const optionsWithDefaults: SystemOptions = merge({}, defaultOptions, overrides);
+  optionsWithDefaults.gitlogOptions.fields = uniq(optionsWithDefaults.gitlogOptions.fields);
 
   return optionsWithDefaults;
 };

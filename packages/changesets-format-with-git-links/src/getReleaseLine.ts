@@ -14,7 +14,9 @@ const getReleaseLine = async (
   // Process changeset info
 
   const [firstLine, ...futureLines] = changeset.summary.split('\n').map((l) => l.trimEnd());
-  const linesAfterFirst = `\n${futureLines.map((l) => `  ${l}`).join('\n')}`;
+  const linesAfterFirst = futureLines.length
+    ? `\n${futureLines.map((l) => `  ${l}`).join('\n')}`
+    : '';
 
   const changesetInfo = {
     ...changeset,
@@ -45,6 +47,8 @@ const getReleaseLine = async (
     ...otherOptions,
     changesetInfo,
     commitInfo,
+    issueMatch: null,
+    options: systemOptions,
   };
 
   // Process commitTemplate
@@ -58,8 +62,7 @@ const getReleaseLine = async (
 
   // Process issueTemplate
   templateData.issue = issueMissingTemplate;
-  templateData.issueMatch = null;
-  if (issuePattern && issueTemplate) {
+  if (commitInfo?.subject && issuePattern && issueTemplate) {
     const issueRegex = new RegExp(issuePattern);
     const issueMatch = commitInfo.subject.match(issueRegex);
     if (issueMatch) {

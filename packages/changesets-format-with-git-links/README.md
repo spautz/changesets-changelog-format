@@ -4,8 +4,8 @@ A changelog formatter for [Changesets](https://github.com/changesets/changesets)
 
 [![npm version](https://img.shields.io/npm/v/changesets-format-with-git-links.svg)](https://www.npmjs.com/package/changesets-format-with-git-links)
 [![build status](https://github.com/spautz/changesets-changelog-format/workflows/CI/badge.svg)](https://github.com/spautz/changesets-changelog-format/actions)
-[![dependencies status](https://img.shields.io/librariesio/release/npm/changesets-format-with-git-links.svg)](https://libraries.io/github/spautz/changesets-format-with-git-links)
 [![test coverage](https://img.shields.io/coveralls/github/spautz/changesets-changelog-format/main.svg)](https://coveralls.io/github/spautz/changesets-changelog-format?branch=main)
+[![dependencies status](https://img.shields.io/librariesio/release/npm/changesets-format-with-git-links.svg)](https://libraries.io/github/spautz/changesets-changelog-format)
 
 ## What is this?
 

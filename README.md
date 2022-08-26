@@ -4,17 +4,17 @@ A changelog formatter for [Changesets](https://github.com/changesets/changesets)
 
 [![npm version](https://img.shields.io/npm/v/changesets-format-with-git-links.svg)](https://www.npmjs.com/package/changesets-format-with-git-links)
 [![build status](https://github.com/spautz/changesets-changelog-format/workflows/CI/badge.svg)](https://github.com/spautz/changesets-changelog-format/actions)
-[![dependencies status](https://img.shields.io/librariesio/release/npm/changesets-format-with-git-links.svg)](https://libraries.io/github/spautz/changesets-format-with-git-links)
 [![test coverage](https://img.shields.io/coveralls/github/spautz/changesets-changelog-format/main.svg)](https://coveralls.io/github/spautz/changesets-changelog-format?branch=main)
+[![dependencies status](https://img.shields.io/librariesio/release/npm/changesets-format-with-git-links.svg)](https://libraries.io/github/spautz/changesets-changelog-format)
 
 ## What is this?
 
-[Atlassian Changesets](https://github.com/changesets/changesets) is a changelog management tool. Its default changelog
-formatter only generates a plain list of changes.
+[Atlassian Changesets](https://github.com/changesets/changesets) is a changelog management tool. Its default formatter
+generates a plain list of changes, without issue links.
 
 This package adds links to the git commits, issues, and pull requests where your changesets were added.
 
-The result is similar to the output of other common changelog managers, such as
+The result is similar to the output of other common changelog standards, such as
 [standard-version](https://github.com/conventional-changelog/standard-version/blob/master/CHANGELOG.md)
 and [Release Please](https://github.com/googleapis/release-please/blob/main/CHANGELOG.md).
 
@@ -36,6 +36,26 @@ npm install --save-dev changesets-format-with-git-links
     {
       "repoBaseUrl": "https://github.com/your-username/repo",
       // additional options here
+    }
+  ]
+}
+```
+
+### Bitbucket setup
+
+You can change the commit and issue link templates for Bitbucket or any other service:
+
+```
+// .changeset/config.json
+{
+  "changelog": [
+    "changesets-format-with-git-links",
+    {
+      "repoBaseUrl": "https://bitbucket.org/your-company/repo",
+      // This will generate a Markdown link like `[#123](https://bitbucket.org/your-company/repo/pull-requests/123)`,
+      // wrapped in parentheses.
+      "issueTemplate": " ([#$issue]($repoBaseUrl/pull-requests/$issue))"
+      "commitTemplate": " [$abbrevHash]($repoBaseUrl/src/$hash)"
     }
   ]
 }
@@ -90,7 +110,7 @@ Default:
 {
   "repo": ".",
   "number": 1,
-  "fields": ["hash", "abbrevHash", "subject"],
+  "fields": ["hash", "abbrevHash", "authorName", "authorEmail", "authorDate", "subject"],
   "includeMergeCommitFiles": true
 }
 ```
@@ -116,25 +136,36 @@ Use `\\$` to escape the dollar sign character if you do not want it to be treate
 
 Information from the changeset entry:
 
-- `$changesetTitle`
-- `$changesetBody`
-- `$changesetRawBody`
-- `$versionType`
-- `$changesetInfo` contains all of the above, and any other [information from Changesets](https://github.com/changesets/changesets/blob/main/packages/types/src/index.ts#L28-L31)
-  (e.g., `${changesetInfo.changesetTitle}`, `${changesetInfo.versionType}`).
+| Variable name       | Notes                                                                                                                                                                                                                                             |
+| :------------------ | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `$changesetTitle`   | The summary (first line) of your Changesets entry                                                                                                                                                                                                 |
+| `$changesetBody`    | All text after the first line of your Changesets entry, trimmed                                                                                                                                                                                   |
+| `$changesetRawBody` | The entire text of your Changesets entry                                                                                                                                                                                                          |
+| `$versionType`      | The semver bump type: `"major"`, `"minor"`, `"patch"`, or `"none"`                                                                                                                                                                                |
+| `$changesetInfo`    | Object containing all of the above, plus any other [information from Changesets](https://github.com/changesets/changesets/blob/main/packages/types/src/index.ts#L28-L31) (e.g.,`${changesetInfo.changesetTitle}`, `${changesetInfo.versionType}`) |
 
 Information from the git commit when the changeset was added or modified:
 
-- `$hash`
-- `$abbrevHash`
-- `$summary`
-- Anything you requested via [`gitlogOptions.fields`](#gitlogoptions)
-- `$commit` is generated from `commitTemplate` (or `commitMissingTemplate` if the commit was not found)
-- `$commitInfo` contains all of the above (e.g., `${commitInfo.abbrevHash}`, `${commitInfo.hash}`).
+| Variable name | Notes                                                                                                                          |
+| :------------ | :----------------------------------------------------------------------------------------------------------------------------- |
+| `$commit`     | Text generated from `commitTemplate` (or `commitMissingTemplate` if the commit was not found)                                  |
+| `$hash`       | The full 40-character git hash                                                                                                 |
+| `$abbrevHash` | The short git hash                                                                                                             |
+| `$subject`    | First line of the commit message                                                                                               |
+| ...           | Anything you requested via [`gitlogOptions.fields`](https://github.com/domharrington/node-gitlog#user-content-optional-fields) |
+| `$commitInfo` | Object containing all of the above (e.g., `${commitInfo.abbrevHash}`, `${commitInfo.hash}`)                                    |
 
 Information from the matched issue pattern, if any:
 
-- `$issue` is generated from `issueTemplate` (or `issueMissingTemplate` if no issue not found)
-- `$issueMatch` contains all of the results from the match against `issuePattern` (e.g., `${issueMatch[1]}`)
+| Variable name | Notes                                                                                                 |
+| :------------ | :---------------------------------------------------------------------------------------------------- |
+| `$issue`      | Text generated from `issueTemplate` (or `issueMissingTemplate` if no issue was found)                 |
+| `$issueMatch` | Object containing all of the results from the match against `issuePattern` (e.g., `${issueMatch[1]}`) |
 
-And also any additional values you added to the options in your `.changeset/config.json` (such as `$repoBaseUrl`)
+And also any additional values you included in the config options:
+
+| Variable name  | Notes                                                                                        |
+| :------------- | :------------------------------------------------------------------------------------------- |
+| `$repoBaseUrl` | Generally used by `commitTemplate` and `issueTemplate`                                       |
+| ...            | Anything that wasn't recognized                                                              |
+| `$options`     | Object containing all of the options from `.changeset/config.json`, merged with the defaults |
