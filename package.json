@@ -45,7 +45,7 @@
     "all:ci": "pnpm run format:verify       && pnpm run types && pnpm run lint     && pnpm run test:ci && pnpm run packages:build && pnpm run changelog:status",
     "____ INDIVIDUAL COMMANDS ___________________________________________": "",
     "changelog": "changeset",
-    "changelog:status": "changeset status --verbose",
+    "changelog:status": "changeset status --verbose || changeset status --since=origin/main --verbose",
     "format": "prettier --write .",
     "format:verify": "prettier --list-different .",
     "lint": "eslint . --max-warnings 0",
