@@ -58,7 +58,6 @@ const defaultOptions: SystemOptions = {
 
   gitlogOptions: {
     repo: '.',
-    number: 1,
     // https://github.com/domharrington/node-gitlog#user-content-optional-fields
     fields: ['hash', 'abbrevHash', 'authorName', 'authorEmail', 'authorDate', 'subject'],
     includeMergeCommitFiles: true,
