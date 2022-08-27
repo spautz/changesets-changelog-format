@@ -70,7 +70,7 @@ Example: `"https://github.com/spautz/changesets-changelog-format"`
 
 Content that will be added to your changelog.
 
-With the deafult value, issue and commit links will be inserted at the end of the first line of your changeset message.
+With the default value, issue and commit links will be inserted at the end of the first line of your changeset message.
 
 See `commitTemplate` for the `$commit` variable, `issueTemplate` for the `$issue` variable, and [Template Variables](#template-variables)
 for other available values.
@@ -107,7 +107,6 @@ Default:
 ```json
 {
   "repo": ".",
-  "number": 1,
   "fields": ["hash", "abbrevHash", "authorName", "authorEmail", "authorDate", "subject"],
   "includeMergeCommitFiles": true
 }
@@ -120,8 +119,8 @@ behavior of the git log search.
 
 ## How it works
 
-This works by identifying the git commit when a changeset entry was added or updated, looking for an issue number,
-and then using templates to append the git links (commit and issue number, if present) to the changelog entry.
+This works by identifying the git commit when a changeset entry was added, looking for an issue number in its commit message,
+and then using templates to append any relevant links or info to the changelog entry.
 
 ## Template variables
 
@@ -142,7 +141,7 @@ Information from the changeset entry:
 | `$versionType`      | The semver bump type: `"major"`, `"minor"`, `"patch"`, or `"none"`                                                                                                                                                                                |
 | `$changesetInfo`    | Object containing all of the above, plus any other [information from Changesets](https://github.com/changesets/changesets/blob/main/packages/types/src/index.ts#L28-L31) (e.g.,`${changesetInfo.changesetTitle}`, `${changesetInfo.versionType}`) |
 
-Information from the git commit when the changeset was added or modified:
+Information from the git commit when the changeset was added:
 
 | Variable name | Notes                                                                                                                          |
 | :------------ | :----------------------------------------------------------------------------------------------------------------------------- |

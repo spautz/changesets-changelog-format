@@ -16,11 +16,12 @@ const findCommitForChangeset = async (
     ...gitlogOptions,
     file: `.changeset${path.sep}${id}.md`,
   });
+
   if (!commits || !commits.length) {
     return null;
   }
 
-  return commits[0];
+  return commits.find((commit) => commit.status.includes('A')) || null;
 };
 
 export { findCommitForChangeset };

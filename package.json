@@ -1,7 +1,6 @@
 {
   "name": "@spautz/changesets-changelog-format",
   "private": true,
-  "version": "0.0.1",
   "description": "A changelog formatter for Changesets that adds commit and issue/PR links",
   "license": "MIT",
   "homepage": "https://github.com/spautz/changesets-changelog-format#readme",
@@ -18,7 +17,7 @@
     "node": "^14 || ^16 || ^18",
     "pnpm": "^7"
   },
-  "packageManager": "pnpm@7.9.3",
+  "packageManager": "pnpm@7.9.5",
   "type": "module",
   "scripts": {
     "____ HOOKS _________________________________________________________": "",
@@ -43,10 +42,11 @@
     "all": "pnpm run format                 && pnpm run types && pnpm run lint:fix && pnpm run test:coverage && pnpm run packages:build",
     "all:readonly": "pnpm run format:verify && pnpm run types && pnpm run lint     && pnpm run test:quick",
     "all:quick": "pnpm run format           && pnpm run types && pnpm run lint:fix",
-    "all:ci": "pnpm run format:verify       && pnpm run types && pnpm run lint     && pnpm run test:ci && pnpm run packages:build && pnpm run changelog:status",
+    "all:ci": "pnpm run format:verify       && pnpm run types && pnpm run lint     && pnpm run test:ci && pnpm run packages:build && pnpm run changelog:status:ci",
     "____ INDIVIDUAL COMMANDS ___________________________________________": "",
     "changelog": "changeset",
-    "changelog:status": "changeset status --since=origin/main --verbose",
+    "changelog:status": "changeset status --verbose",
+    "changelog:status:ci": "changeset status --since=origin/main --verbose",
     "format": "prettier --write .",
     "format:verify": "prettier --list-different .",
     "lint": "eslint . --max-warnings 0",
