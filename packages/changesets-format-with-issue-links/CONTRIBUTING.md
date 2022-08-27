@@ -1,8 +1,8 @@
 # Contributing
 
-Thanks for your interest in changesets-format-with-git-links! You are very welcome to contribute.
+Thanks for your interest in changesets-format-with-issue-links! You are very welcome to contribute.
 
-By contributing to changesets-format-with-git-links, you agree to abide by the [code of conduct](./CODE_OF_CONDUCT.md).
+By contributing to changesets-format-with-issue-links, you agree to abide by the [code of conduct](./CODE_OF_CONDUCT.md).
 
 ## Reporting Bugs and Asking Questions
 
@@ -37,7 +37,7 @@ to discuss your idea and make sure it is inline with the project goals.
    git checkout -b my-topic-branch
    ```
 
-4. To test your local dev version of `changesets-format-with-git-links` in other projects, [Yalc](https://github.com/whitecolor/yalc)
+4. To test your local dev version of `changesets-format-with-issue-links` in other projects, [Yalc](https://github.com/whitecolor/yalc)
    is an excellent tool.
 
 5. After you have made your changes, submit a pull request. Issues and pull requests are monitored, and you should
