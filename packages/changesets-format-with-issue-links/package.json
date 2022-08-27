@@ -1,6 +1,6 @@
 {
   "name": "changesets-format-with-issue-links",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "A changelog formatter for Changesets that adds commit, PR, and issue links",
   "keywords": [
     "changesets",
