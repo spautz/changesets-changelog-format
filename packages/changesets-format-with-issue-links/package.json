@@ -1,13 +1,13 @@
 {
   "name": "changesets-format-with-issue-links",
   "version": "0.2.0",
-  "description": "A changelog formatter for Changesets that adds commit and issue/PR links",
+  "description": "A changelog formatter for Changesets that adds commit, PR, and issue links",
   "keywords": [
     "changesets",
-    "issue links",
     "changelog",
-    "pull request links",
-    "changelog format"
+    "issues",
+    "issue links",
+    "format"
   ],
   "license": "MIT",
   "homepage": "https://github.com/spautz/changesets-changelog-format/packages/changesets-format-with-issue-links#readme",
