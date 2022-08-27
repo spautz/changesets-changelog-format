@@ -35,6 +35,6 @@
   },
   // The "include" for the root is for typechecking the entire project (it includes directories like "tests" which
   // the package-level tsconfigs don't include)
-  "include": ["./packages/changesets-format-with-git-links/src"],
+  "include": ["./packages/changesets-format-with-issue-links/src"],
   "exclude": ["node_modules"]
 }

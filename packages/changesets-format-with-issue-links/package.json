@@ -1,5 +1,5 @@
 {
-  "name": "changesets-format-with-git-links",
+  "name": "changesets-format-with-issue-links",
   "version": "0.2.0",
   "description": "A changelog formatter for Changesets that adds commit and issue/PR links",
   "keywords": [
@@ -10,12 +10,12 @@
     "changelog format"
   ],
   "license": "MIT",
-  "homepage": "https://github.com/spautz/changesets-changelog-format/packages/changesets-format-with-git-links#readme",
+  "homepage": "https://github.com/spautz/changesets-changelog-format/packages/changesets-format-with-issue-links#readme",
   "bugs": "https://github.com/spautz/changesets-changelog-format/issues",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/spautz/changesets-changelog-format.git",
-    "directory": "packages/changesets-format-with-git-links"
+    "directory": "packages/changesets-format-with-issue-links"
   },
   "author": {
     "name": "Steven Pautz",

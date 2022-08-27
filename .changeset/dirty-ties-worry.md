@@ -1,5 +1,5 @@
 ---
-"changesets-format-with-git-links": patch
+"changesets-format-with-issue-links": patch
 ---
 
 Update dev environment

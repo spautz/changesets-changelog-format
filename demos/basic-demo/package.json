@@ -24,7 +24,7 @@
   "dependencies": {},
   "devDependencies": {
     "@changesets/cli": "2.24.3",
-    "changesets-format-with-git-links": "workspace:*"
+    "changesets-format-with-issue-links": "workspace:*"
   },
   "peerDependencies": {},
   "typesVersions": {

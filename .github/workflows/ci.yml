@@ -57,7 +57,7 @@ jobs:
 #    runs-on: ubuntu-latest
 #    strategy:
 #      matrix:
-#        package-name: [ changesets-format-with-git-links ]
+#        package-name: [ changesets-format-with-issue-links ]
 #
 #    steps:
 #      - uses: actions/checkout@v3

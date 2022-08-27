@@ -10,7 +10,7 @@ importers:
       '@typescript-eslint/eslint-plugin': 5.35.1
       '@typescript-eslint/parser': 5.35.1
       '@vitest/coverage-c8': 0.22.1
-      changesets-format-with-git-links: workspace:0.2.0
+      changesets-format-with-issue-links: workspace:0.2.0
       downlevel-dts: 0.10.0
       eslint: 8.22.0
       eslint-config-prettier: 8.5.0
@@ -29,7 +29,7 @@ importers:
       '@typescript-eslint/eslint-plugin': 5.35.1_ktjxjibzrfqejavile4bhmzhjq
       '@typescript-eslint/parser': 5.35.1_4rv7y5c6xz3vfxwhbrcxxi73bq
       '@vitest/coverage-c8': 0.22.1_jsdom@20.0.0
-      changesets-format-with-git-links: link:packages/changesets-format-with-git-links
+      changesets-format-with-issue-links: link:packages/changesets-format-with-issue-links
       downlevel-dts: 0.10.0
       eslint: 8.22.0
       eslint-config-prettier: 8.5.0_eslint@8.22.0
@@ -45,12 +45,12 @@ importers:
   demos/basic-demo:
     specifiers:
       '@changesets/cli': 2.24.3
-      changesets-format-with-git-links: workspace:*
+      changesets-format-with-issue-links: workspace:*
     devDependencies:
       '@changesets/cli': 2.24.3
-      changesets-format-with-git-links: link:../../packages/changesets-format-with-git-links
+      changesets-format-with-issue-links: link:../../packages/changesets-format-with-issue-links
 
-  packages/changesets-format-with-git-links:
+  packages/changesets-format-with-issue-links:
     specifiers:
       '@changesets/types': 5.1.0
       '@types/lodash': ^4.14.184

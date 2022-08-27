@@ -1,1 +1,1 @@
-import 'packages/changesets-format-with-git-links/setupTests';
+import 'packages/changesets-format-with-issue-links/setupTests';
