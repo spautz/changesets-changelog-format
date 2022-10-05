@@ -20,7 +20,7 @@ and [Release Please](https://github.com/googleapis/release-please/blob/main/CHAN
 
 If you have already set up Changesets, you only need to install the package and add it to your `.changeset/config.json`.
 
-You do _not_ need to enable the `commit` option in your config.
+You do not need to enable the `commit` option in your config.
 
 ```shell
 npm install --D changesets-format-with-issue-links
