@@ -8,6 +8,7 @@
     "lib": ["DOM", "DOM.Iterable", "ES2020"],
     "allowJs": true,
     "declaration": true,
+    "declarationMap": true,
     "jsx": "react",
     "noEmit": true,
     "sourceMap": true,
