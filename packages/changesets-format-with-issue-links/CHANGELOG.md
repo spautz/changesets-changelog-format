@@ -1,5 +1,19 @@
 # Changelog
 
+## 1.0.0
+
+### Major Changes
+
+- Prepare for 1.0 release ([#12](https://github.com/spautz/changesets-changelog-format/issues/12)) ([b87919d](https://github.com/spautz/changesets-changelog-format/commit/b87919df0379ab18c0a7441dd1a3a615c58b6d9d))
+
+### Minor Changes
+
+- Enable declarationMap for build ([#11](https://github.com/spautz/changesets-changelog-format/issues/11)) ([bdca3af](https://github.com/spautz/changesets-changelog-format/commit/bdca3af2248b812c2de6381e716efe8b1ba803d6))
+
+### Patch Changes
+
+- Confirm compatibility with Node 20 ([#11](https://github.com/spautz/changesets-changelog-format/issues/11)) ([bdca3af](https://github.com/spautz/changesets-changelog-format/commit/bdca3af2248b812c2de6381e716efe8b1ba803d6))
+
 ## 0.3.0
 
 ### Breaking Changes
