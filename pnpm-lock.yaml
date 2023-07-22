@@ -1505,7 +1505,7 @@ packages:
     dependencies:
       semver: 7.5.0
       shelljs: 0.8.5
-      typescript: 5.1.0-dev.20230425
+      typescript: 5.2.0-dev.20230720
     dev: true
 
   /eastasianwidth@0.2.0:
@@ -2967,7 +2967,7 @@ packages:
       levn: 0.3.0
       prelude-ls: 1.1.2
       type-check: 0.3.2
-      word-wrap: 1.2.3
+      word-wrap: 1.2.4
     dev: true
 
   /optionator@0.9.1:
@@ -2979,7 +2979,7 @@ packages:
       levn: 0.4.1
       prelude-ls: 1.2.1
       type-check: 0.4.0
-      word-wrap: 1.2.3
+      word-wrap: 1.2.4
     dev: true
 
   /os-tmpdir@1.0.2:
@@ -3917,8 +3917,8 @@ packages:
     hasBin: true
     dev: true
 
-  /typescript@5.1.0-dev.20230425:
-    resolution: {integrity: sha512-r1wbkllVmbfrGl2JE5sGmMg50hrD7P9MiAuaq2v6CgUN3qPKDeHVS3V/OOFA0LRUknZMPP8WUpgZpckmQhnyNQ==}
+  /typescript@5.2.0-dev.20230720:
+    resolution: {integrity: sha512-uZPSzgA2ZfMYqCafPbJ67YLwiVXeo93rT2iackGNerTEFs7wRBr2ENVRBIP33g5xCV0fFqN+e0l4oLvQjCZUKw==}
     engines: {node: '>=14.17'}
     hasBin: true
     dev: true
@@ -4200,8 +4200,8 @@ packages:
       stackback: 0.0.2
     dev: true
 
-  /word-wrap@1.2.3:
-    resolution: {integrity: sha512-Hz/mrNwitNRh/HUAtM/VT/5VH+ygD6DV7mYKZAtHOrbs8U7lvPS6xf7EJKMF0uW1KJCl0H701g3ZGus+muE5vQ==}
+  /word-wrap@1.2.4:
+    resolution: {integrity: sha512-2V81OA4ugVo5pRo46hAoD2ivUJx8jXmWXfUkY4KFNw0hEptvN0QfH3K4nHiwzGeKl5rFKedV48QVoqYavy4YpA==}
     engines: {node: '>=0.10.0'}
     dev: true
 
