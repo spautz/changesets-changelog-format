@@ -77,8 +77,8 @@ importers:
         specifier: ^4.0.4
         version: 4.0.4
       lodash:
-        specifier: ^4.17.21
-        version: 4.17.21
+        specifier: ^4.17.23
+        version: 4.17.23
     devDependencies:
       '@changesets/types':
         specifier: 5.2.1
@@ -1547,7 +1547,7 @@ packages:
       esutils: 2.0.3
       fast-diff: 1.2.0
       js-string-escape: 1.0.1
-      lodash: 4.17.21
+      lodash: 4.17.23
       md5-hex: 3.0.1
       semver: 7.5.0
       well-known-symbols: 2.0.0
@@ -1703,7 +1703,7 @@ packages:
     dependencies:
       semver: 7.5.0
       shelljs: 0.8.5
-      typescript: 6.0.0-dev.20251117
+      typescript: 6.0.0-dev.20260121
     dev: true
 
   /eastasianwidth@0.2.0:
@@ -2927,8 +2927,8 @@ packages:
   /lodash.startcase@4.4.0:
     resolution: {integrity: sha512-+WKqsK294HMSc2jEbNgpHpd0JfIBhp7rEV4aqXWqFr6AlXov+SlcgB1Fv01y2kGe3Gc8nMW7VA0SrGuSkRfIEg==}
 
-  /lodash@4.17.21:
-    resolution: {integrity: sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==}
+  /lodash@4.17.23:
+    resolution: {integrity: sha512-LgVTMpQtIopCi79SJeDiP0TfWi5CNEc/L/aRdTh3yIvmZXTnheWpKjSZhnvMl8iXbC1tFg9gdHHDMLoV7CnG+w==}
 
   /log-update@4.0.0:
     resolution: {integrity: sha512-9fkkDevMefjg0mmzWFBW8YkFP91OrizzkW3diF7CpG+S2EYdy4+TVfGwz1zeF8x7hCx1ovSPTOE9Ngib74qqUg==}
@@ -4145,8 +4145,8 @@ packages:
     hasBin: true
     dev: true
 
-  /typescript@6.0.0-dev.20251117:
-    resolution: {integrity: sha512-BJkVdQDGWE8KxtuSLvWLQ/ju+n6FdSM8rq/2B9myrmKXeKa9HRG36MOTMgfZQUWDmPd2f5+U8fhU7xO2+WNa3g==}
+  /typescript@6.0.0-dev.20260121:
+    resolution: {integrity: sha512-rv2oMpqRA/ns4x2AlQbFhnMYtXJkeYKoEMkAzMlBIkRK7X7D0AweHCclJWt+LrmhJLP5K2F1GwEO1qZWPyYs0w==}
     engines: {node: '>=14.17'}
     hasBin: true
     dev: true
