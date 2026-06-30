@@ -1,6 +1,6 @@
-import { getReleaseLine } from './getReleaseLine';
+import type { ChangelogFunctions } from '@changesets/types';
 import { getDependencyReleaseLine } from './getDependencyReleaseLine';
-import { ChangelogFunctions } from '@changesets/types';
+import { getReleaseLine } from './getReleaseLine';
 
 /**
  * This is the changelog formatter that Changesets sees.
@@ -11,11 +11,11 @@ const changelogFunctions = {
   getDependencyReleaseLine,
 } as ChangelogFunctions;
 
+export * from './getDependencyReleaseLine';
+export * from './getReleaseLine';
 // All of these exports are for convenience only
 export * from './internals/findCommitForChangeset';
 export * from './internals/processTemplate';
-export * from './getReleaseLine';
-export * from './getDependencyReleaseLine';
 export * from './options';
 
 export default changelogFunctions;

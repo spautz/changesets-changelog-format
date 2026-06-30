@@ -1,10 +1,10 @@
-import { beforeAll, afterAll, describe, expect, test, vi } from 'vitest';
-import { NewChangesetWithCommit, VersionType } from '@changesets/types';
-import { gitlogPromise } from 'gitlog';
+import type { NewChangesetWithCommit, VersionType } from '@changesets/types';
+import type { gitlogPromise } from 'gitlog';
 import has from 'lodash/has';
+import { afterAll, beforeAll, describe, expect, test, vi } from 'vitest';
 
 import { getReleaseLine } from '../getReleaseLine';
-import { UserOptions } from '../options';
+import type { UserOptions } from '../options';
 
 // This is used to mock gitlog
 const mockCommitsById: Record<string, ReturnType<typeof gitlogPromise> | null> = {
@@ -36,7 +36,7 @@ describe('getReleaseLine', () => {
         // Reverse-engineer the original changeset id from the filename:
         // this mock is tightly coupled to the implementation in internals/findCommitForChangeset.ts
         const idMatch = file.match(/^\.changeset.([-a-z0-9]+)\.md$/);
-        if (!idMatch || !idMatch[1]) {
+        if (!idMatch?.[1]) {
           throw new Error(`Internal test error: could not parse file id from "${file}"`);
         }
 

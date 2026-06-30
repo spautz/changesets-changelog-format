@@ -1,8 +1,8 @@
-import { NewChangesetWithCommit } from '@changesets/types';
-import { gitlogPromise } from 'gitlog';
 import path from 'node:path';
+import type { NewChangesetWithCommit } from '@changesets/types';
+import { gitlogPromise } from 'gitlog';
 
-import { GitlogOptions } from '../options';
+import type { GitlogOptions } from '../options';
 
 const findCommitForChangeset = async (
   changesetEntry: NewChangesetWithCommit,
@@ -17,7 +17,7 @@ const findCommitForChangeset = async (
     file: `.changeset${path.sep}${id}.md`,
   });
 
-  if (!commits || !commits.length) {
+  if (!commits?.length) {
     return null;
   }
 

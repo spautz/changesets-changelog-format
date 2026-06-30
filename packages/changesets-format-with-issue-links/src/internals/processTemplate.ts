@@ -17,28 +17,27 @@ const processVariable = (
   varName: string,
 ): string => {
   if (has(data, varName)) {
-    return '' + get(data, varName);
-  } else {
-    throw new Error(
-      `Invalid template variable: ${JSON.stringify(
-        varName,
-      )}. Please use \\$ if this is not a variable.`,
-    );
+    return `${get(data, varName)}`;
   }
+  throw new Error(
+    `Invalid template variable: ${JSON.stringify(
+      varName,
+    )}. Please use \\$ if this is not a variable.`,
+  );
 };
 
 const processTemplate = (template: string | null, data: Record<string, unknown>): string => {
   if (!template) {
     return '';
-  } else if (!template.includes('$')) {
-    return template;
-  } else {
-    // Replace any vars (excluding `\$`) with their data
-    const replacerFn = processVariable.bind(null, data);
-    return template
-      .replace(simpleVariableRegex, replacerFn)
-      .replace(wrappedVariableRegex, replacerFn);
   }
+  if (!template.includes('$')) {
+    return template;
+  }
+  // Replace any vars (excluding `\$`) with their data
+  const replacerFn = processVariable.bind(null, data);
+  return template
+    .replace(simpleVariableRegex, replacerFn)
+    .replace(wrappedVariableRegex, replacerFn);
 };
 
 export { processTemplate };

@@ -1,4 +1,4 @@
-import { CommitField, GitlogOptions as DefaultGitlogOptions } from 'gitlog';
+import type { CommitField, GitlogOptions as DefaultGitlogOptions } from 'gitlog';
 import merge from 'lodash/merge';
 import uniq from 'lodash/uniq';
 

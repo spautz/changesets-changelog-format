@@ -1,6 +1,6 @@
-import { NewChangesetWithCommit, ModCompWithPackage } from '@changesets/types';
+import type { ModCompWithPackage, NewChangesetWithCommit } from '@changesets/types';
 import { getReleaseLine } from './getReleaseLine';
-import { UserOptions } from './options';
+import type { UserOptions } from './options';
 
 /**
  * This is heavily based on Changesets' default `getDependencyReleaseLine`
