@@ -1,15 +1,33 @@
 import type { NewChangesetWithCommit, VersionType } from '@changesets/types';
-import type { gitlogPromise } from 'gitlog';
-import has from 'lodash/has';
-import { afterAll, beforeAll, describe, expect, test, vi } from 'vitest';
+import type gitlog from 'gitlog';
+import { has } from 'lodash-es';
+import { afterAll, describe, expect, test, vi } from 'vitest';
 
-import { getReleaseLine } from '../getReleaseLine';
-import type { UserOptions } from '../options';
+import { getReleaseLine } from '../getReleaseLine.js';
+import type { UserOptions } from '../options.js';
 
 // This is used to mock gitlog
-const mockCommitsById: Record<string, ReturnType<typeof gitlogPromise> | null> = {
+const mockCommitsById: Record<string, ReturnType<typeof gitlog> | null> = {
   'no-commit-found': null,
 };
+
+vi.mock('gitlog', () => ({
+  default: async ({ file }: { file: string }) => {
+    // Reverse-engineer the original changeset id from the filename:
+    // this mock is tightly coupled to the implementation in internals/findCommitForChangeset.ts
+    const idMatch = file.match(/^\.changeset.([-a-z0-9]+)\.md$/);
+    if (!idMatch?.[1]) {
+      throw new Error(`Internal test error: could not parse file id from "${file}"`);
+    }
+
+    const id = idMatch[1];
+    if (!has(mockCommitsById, id)) {
+      throw new Error(`Internal test error: could not find mock commit for id "${id}"`);
+    }
+
+    return mockCommitsById[id];
+  },
+}));
 
 const testCases: Array<{
   changeset: NewChangesetWithCommit;
@@ -30,26 +48,6 @@ const testCases: Array<{
 ];
 
 describe('getReleaseLine', () => {
-  beforeAll(() => {
-    vi.mock('gitlog', () => ({
-      gitlogPromise: async ({ file }: { file: string }) => {
-        // Reverse-engineer the original changeset id from the filename:
-        // this mock is tightly coupled to the implementation in internals/findCommitForChangeset.ts
-        const idMatch = file.match(/^\.changeset.([-a-z0-9]+)\.md$/);
-        if (!idMatch?.[1]) {
-          throw new Error(`Internal test error: could not parse file id from "${file}"`);
-        }
-
-        const id = idMatch[1];
-        if (!has(mockCommitsById, id)) {
-          throw new Error(`Internal test error: could not find mock commit for id "${id}"`);
-        }
-
-        return mockCommitsById[id];
-      },
-    }));
-  });
-
   afterAll(() => {
     vi.resetAllMocks();
   });

@@ -80,17 +80,27 @@
     "build:verifypack": "node --experimental-strip-types ../../scripts/verify-packed-tarballs.ts",
     "size-check": "size-limit --why"
   },
-  "dependencies": {},
+  "dependencies": {
+    "gitlog": "^5.1.0",
+    "lodash-es": "^4.18.1"
+  },
   "devDependencies": {
     "@arethetypeswrong/cli": "catalog:packages",
+    "@changesets/types": "5.2.1",
     "@size-limit/esbuild": "catalog:packages",
     "@size-limit/esbuild-why": "catalog:packages",
     "@size-limit/file": "catalog:packages",
+    "@types/lodash-es": "4.17.12",
+    "@vitest/coverage-v8": "catalog:shared",
+    "@vitest/ui": "catalog:shared",
     "publint": "catalog:packages",
     "size-limit": "catalog:packages",
+    "size-limit-node-esbuild": "0.4.0",
     "tsdown": "catalog:packages"
   },
-  "peerDependencies": {},
+  "peerDependencies": {
+    "@changesets/cli": "^2.0.0"
+  },
   "size-limit": [
     {
       "path": "./dist/esm/index.js",
@@ -99,8 +109,8 @@
     },
     {
       "path": "./dist/esm/index.js",
-      "import": "{ helloWorld }",
-      "limit": "50 B"
+      "import": "{ getReleaseLine }",
+      "limit": "20 kB"
     }
   ]
 }

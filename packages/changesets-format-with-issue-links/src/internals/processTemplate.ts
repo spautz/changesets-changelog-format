@@ -1,5 +1,4 @@
-import get from 'lodash/get';
-import has from 'lodash/has';
+import { get, has } from 'lodash-es';
 
 /**
  * Match simple variables, like `$foo`

@@ -1,6 +1,7 @@
 import type { ModCompWithPackage, NewChangesetWithCommit } from '@changesets/types';
-import { getReleaseLine } from './getReleaseLine';
-import type { UserOptions } from './options';
+
+import { getReleaseLine } from './getReleaseLine.js';
+import type { UserOptions } from './options.js';
 
 /**
  * This is heavily based on Changesets' default `getDependencyReleaseLine`
@@ -9,7 +10,7 @@ const getDependencyReleaseLine = async (
   changesets: NewChangesetWithCommit[],
   dependenciesUpdated: ModCompWithPackage[],
   userOptions: UserOptions,
-) => {
+): Promise<string> => {
   if (dependenciesUpdated.length === 0) return '';
 
   const changesetLinks = await Promise.all(

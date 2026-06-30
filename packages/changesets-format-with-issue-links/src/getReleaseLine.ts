@@ -1,8 +1,8 @@
 import type { NewChangesetWithCommit, VersionType } from '@changesets/types';
 
-import { findCommitForChangeset } from './internals/findCommitForChangeset';
-import { processTemplate } from './internals/processTemplate';
-import { processOptions, type UserOptions } from './options';
+import { findCommitForChangeset } from './internals/findCommitForChangeset.js';
+import { processTemplate } from './internals/processTemplate.js';
+import { processOptions, type UserOptions } from './options.js';
 
 const getReleaseLine = async (
   changeset: NewChangesetWithCommit,
