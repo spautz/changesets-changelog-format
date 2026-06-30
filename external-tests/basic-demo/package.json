@@ -18,12 +18,13 @@
   "source": "./src/index.ts",
   "type": "module",
   "scripts": {
+    "external-test": "pnpm run release:prep",
     "release:prep": "node_modules/.bin/changeset status --verbose && changeset version"
   },
   "dependencies": {},
   "devDependencies": {
     "@changesets/cli": "2.31.0",
-    "changesets-format-with-issue-links": "workspace:*",
+    "changesets-format-with-issue-links": "file:.yalc/changesets-format-with-issue-links",
     "typescript": "catalog:demos"
   }
 }
