@@ -1,41 +1,10 @@
 {
-  "extends": "@tsconfig/recommended/tsconfig.json",
+  "extends": [
+    "./tsconfig-base.typecheck-core.json",
+    "./tsconfig-base.typecheck-modernoptions.json"
+  ],
 
-  "compilerOptions": {
-    /* Basic Options */
-    "target": "ES2020",
-    "module": "ES2020",
-    "lib": ["DOM", "DOM.Iterable", "ES2020"],
-    "allowJs": true,
-    "declaration": true,
-    "declarationMap": true,
-    "jsx": "react",
-    "noEmit": true,
-    "sourceMap": true,
-    "removeComments": false,
-    /* Strict Type-Checking Options */
-    "strict": true,
-    "noImplicitAny": true,
-    "strictNullChecks": true,
-    "strictFunctionTypes": true,
-    "strictBindCallApply": true,
-    "strictPropertyInitialization": true,
-    "noImplicitThis": true,
-    "alwaysStrict": true,
-    /* Additional Checks */
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "noImplicitReturns": true,
-    "noFallthroughCasesInSwitch": true,
-    /* Module Resolution Options */
-    "moduleResolution": "node",
-    "esModuleInterop": true,
-    /* Advanced Options */
-    "forceConsistentCasingInFileNames": true,
-    "skipLibCheck": false
-  },
-  // The "include" for the root is for typechecking the entire project (it includes directories like "tests" which
-  // the package-level tsconfigs don't include)
-  "include": ["./packages/changesets-format-with-issue-links/src"],
-  "exclude": ["node_modules"]
+  // This root config only checks files that are outside other projects: every package, demo app, and external-test
+  // has its own tsconfig targeting its own files.
+  "include": ["scripts/", "*.*"]
 }
