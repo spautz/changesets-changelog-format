@@ -18,7 +18,7 @@
   "source": "./src/index.ts",
   "type": "module",
   "scripts": {
-    "release:prep": "changeset status --verbose && changeset version"
+    "release:prep": "node_modules/.bin/changeset status --verbose && changeset version"
   },
   "dependencies": {},
   "devDependencies": {

@@ -5,10 +5,6 @@ settings:
   excludeLinksFromLockfile: false
 
 catalogs:
-  demos:
-    typescript:
-      specifier: 5.5.4
-      version: 5.5.4
   packages:
 
     '@arethetypeswrong/cli':
@@ -126,18 +122,6 @@ importers:
       yargs:
         specifier: 18.0.0
         version: 18.0.0
-
-  demos/basic-demo:
-    devDependencies:
-      '@changesets/cli':
-        specifier: 2.31.0
-        version: 2.31.0(@types/node@25.9.1)
-      changesets-format-with-issue-links:
-        specifier: workspace:*
-        version: link:../../packages/changesets-format-with-issue-links
-      typescript:
-        specifier: catalog:demos
-        version: 5.5.4
 
   packages/changesets-format-with-issue-links:
     dependencies:
@@ -2125,11 +2109,6 @@ packages:
 
   turbo@2.9.18:
     resolution: {integrity: sha512-bwabv6PupzeavybzEoArBAkwq5fnzwf8OFnRtpHwnviFWuwJPFxtyH+aVp36TmIqK3aYYgtTJ3J0m2ysxxSzQg==}
-    hasBin: true
-
-  typescript@5.5.4:
-    resolution: {integrity: sha512-Mtq29sKDAEYP7aljRgtPOpTvOfbwRWlS6dPRzwjdE+C0R4brX/GUyhHSecbHMFLNBLcJIPt9nl9yG5TZ1weH+Q==}
-    engines: {node: '>=14.17'}
     hasBin: true
 
   typescript@5.6.1-rc:
@@ -4145,8 +4124,6 @@ snapshots:
       '@turbo/linux-arm64': 2.9.18
       '@turbo/windows-64': 2.9.18
       '@turbo/windows-arm64': 2.9.18
-
-  typescript@5.5.4: {}
 
   typescript@5.6.1-rc: {}
 
