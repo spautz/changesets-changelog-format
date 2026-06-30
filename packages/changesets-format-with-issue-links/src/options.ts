@@ -1,6 +1,5 @@
-import { CommitField, GitlogOptions as DefaultGitlogOptions } from 'gitlog';
-import merge from 'lodash/merge';
-import uniq from 'lodash/uniq';
+import type { CommitField, GitlogOptions as DefaultGitlogOptions } from 'gitlog';
+import { merge, uniq } from 'lodash-es';
 
 // the default GitlogOptions typing only allows the default field names: this one supports all valid ones
 export type GitlogOptions = DefaultGitlogOptions<CommitField>;
@@ -33,6 +32,7 @@ export type UserOptions = Partial<
 const defaultOptions: SystemOptions = {
   repoBaseUrl: 'https://example.com',
 
+  // biome-ignore lint/suspicious/noTemplateCurlyInString: Intentional template string
   changesetTemplate: '- ${changesetTitle}${issue}${commit}${changesetBody}',
 
   // Default: a github-style commit link inside parentheses

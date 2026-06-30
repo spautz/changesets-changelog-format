@@ -1,6 +1,6 @@
 import { describe, expect, test } from 'vitest';
 
-import { defaultOptions, processOptions } from '../options';
+import { defaultOptions, processOptions } from '../options.js';
 
 describe('processOptions', () => {
   test('clones defaults if no overrides are given', () => {
