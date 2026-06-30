@@ -1,6 +1,6 @@
 import { describe, expect, test } from 'vitest';
 
-import defaultPackageExport from '../index';
+import defaultPackageExport from '../index.js';
 
 describe('package', () => {
   test('exports what Changesets expects', () => {
