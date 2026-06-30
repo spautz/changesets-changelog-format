@@ -1,51 +1,29 @@
 {
-  "name": "@spautz/changesets-changelog-format--basic-demo",
-  "private": true,
-  "description": "A demo library which has several pending changelog entries.",
-  "keywords": [],
-  "license": "MIT",
-  "homepage": "https://github.com/spautz/changesets-changelog-format/packages/basic-demo#readme",
-  "bugs": "https://github.com/spautz/changesets-changelog-format/issues",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/spautz/changesets-changelog-format.git",
-    "directory": "packages/basic-demo"
-  },
-  "author": {
-    "name": "Steven Pautz",
-    "url": "https://github.com/spautz/"
-  },
-  "source": "./src/index.ts",
-  "type": "module",
-  "scripts": {
-    "release:prep": "changeset status --verbose && changeset version"
-  },
-  "dependencies": {},
-  "devDependencies": {
-    "@changesets/cli": "2.26.1",
-    "changesets-format-with-issue-links": "workspace:*"
-  },
-  "peerDependencies": {},
-  "typesVersions": {
-    "<4.0": {
-      "*": [
-        "legacy-types/ts3.5/index.d.ts"
-      ]
-    },
-    "<4.5": {
-      "*": [
-        "legacy-types/ts4.0/index.d.ts"
-      ]
-    },
-    "<4.7": {
-      "*": [
-        "legacy-types/ts4.5/index.d.ts"
-      ]
-    },
-    "*": {
-      "*": [
-        "dist/index.d.ts"
-      ]
-    }
-  }
+	"name": "@spautz/changesets-changelog-format--basic-demo",
+	"private": true,
+	"description": "A demo library which has several pending changelog entries.",
+	"keywords": [],
+	"license": "MIT",
+	"homepage": "https://github.com/spautz/changesets-changelog-format/packages/basic-demo#readme",
+	"bugs": "https://github.com/spautz/changesets-changelog-format/issues",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/spautz/changesets-changelog-format.git",
+		"directory": "packages/basic-demo"
+	},
+	"author": {
+		"name": "Steven Pautz",
+		"url": "https://stevenpautz.com"
+	},
+	"source": "./src/index.ts",
+	"type": "module",
+	"scripts": {
+		"release:prep": "changeset status --verbose && changeset version"
+	},
+	"dependencies": {},
+	"devDependencies": {
+		"@changesets/cli": "2.31.0",
+		"changesets-format-with-issue-links": "workspace:*",
+		"typescript": "catalog:demos"
+	}
 }
