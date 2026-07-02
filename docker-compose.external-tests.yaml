@@ -8,5 +8,5 @@ services:
       target: ${DOCKER_BUILD_TARGET:-default}
     working_dir: /app-basic-demo
     volumes:
-      - ./external-tests/basic-demo/src:/app-basic-demo/src:ro
+      - ./external-tests/basic-demo/src:/app-basic-demo/src
     init: true

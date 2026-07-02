@@ -2,4 +2,4 @@
 
 ## 0.1.0
 
-- This is the previous release
+- This is the initial release

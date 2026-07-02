@@ -14,7 +14,7 @@ RUN apt-get update \
 
 FROM base-environment AS base-deps
 
-COPY package.json package-lock.jso[n]  ./
+COPY package.json pnpm-lock.yam[l]  ./
 COPY .yalc  .yalc/
 RUN pnpm install
 
@@ -23,9 +23,17 @@ FROM base-deps AS base-app
 COPY . ./
 # We need to reapply the lockfile from deps, in case it changed
 COPY --from=base-deps /app-basic-demo/pnpm-lock.yaml ./
-RUN pnpm run clean
-RUN bash ./seed-git-history.sh
 
+RUN git init -b main \
+  && git config user.email "changesets-demo@example.com" \
+  && git config user.name "Changesets Demo" \
+  && git config commit.gpgsign false
+
+RUN pnpm run clean
+RUN pnpm run changelog:reset
+
+RUN git add .
+RUN git commit -m "Initial commit"
 
 # A target for each check or test case. These are just for readability.
 #   'run-all' = all project checks
@@ -41,5 +49,5 @@ CMD ["bash", "./run-checks.sh"]
 FROM run-all AS default
 LABEL external-test-name="basic-demo"
 LABEL external-test.artifact.1="/app-basic-demo/pnpm-lock.yaml"
-LABEL external-test.artifact.1="/app-basic-demo/CHANGELOG.md"
-LABEL external-test.artifact.1="/app-basic-demo/CHANGELOG-actual-diff.md"
+LABEL external-test.artifact.2="/app-basic-demo/CHANGELOG.md"
+LABEL external-test.artifact.3="/app-basic-demo/CHANGELOG-diff.diff"

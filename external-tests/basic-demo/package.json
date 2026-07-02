@@ -1,5 +1,5 @@
 {
-  "name": "@spautz/changesets-changelog-format--basic-demo",
+  "name": "@private/external-test--basic-demo",
   "version": "0.1.0",
   "description": "A demo library which has several pending changelog entries.",
   "keywords": [],
@@ -16,14 +16,17 @@
     "url": "https://stevenpautz.com"
   },
   "engines": {
-    "node": "^24",
+    "node": "^24 || ^26",
     "pnpm": ">=11.9.0 <12"
   },
   "packageManager": "pnpm@11.9.0+sha512.bd682d5d03fe525ef7c9fd6780c6884d1e756ac4c9c9fe00c538782824310dcf90e3ddc4f53835f06dfaebd5085e41855e0bcbb3b60de2ac5bbab89e5036f03b",
   "source": "./src/index.ts",
   "type": "module",
   "scripts": {
-    "clean": "rimraf ./CHANGELOG-original.md ./CHANGELOG-actual-diff.diff",
+    "clean": "rimraf ./CHANGELOG-diff.diff",
+    "changelog:add": "changeset add",
+    "changelog:reset": "rimraf --glob ./.changeset/*.md",
+    "changelog:status": "changeset status --verbose",
     "release:prep": "changeset status --verbose && changeset version"
   },
   "dependencies": {},
