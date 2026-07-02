@@ -39,7 +39,7 @@
     "test:watch": "turbo run w:all-tests:watch",
     "typecheck": "turbo run w:typecheck typecheck",
     "____ WORKSPACE-ONLY TASKS __________________________________________": "",
-    "changelog:add": "changeset",
+    "changelog": "changeset",
     "changelog:status": "changeset status --verbose",
     "changelog:status:ci": "changeset status --since=origin/main --verbose",
     "catalogs:verify": "node --experimental-strip-types ./scripts/verify-catalog-specifiers.ts",
