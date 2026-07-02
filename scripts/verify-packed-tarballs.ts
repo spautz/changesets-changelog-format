@@ -58,9 +58,7 @@ async function runAttw(tarball: string): Promise<number> {
     });
 
     child.on('error', reject);
-    child.on('exit', (code: number | null) => {
-      resolve(code ?? 1);
-    });
+    child.on('exit', (code: number | null) => resolve(code ?? 1));
   });
 }
 

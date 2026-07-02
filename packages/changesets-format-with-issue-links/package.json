@@ -86,7 +86,7 @@
   },
   "devDependencies": {
     "@arethetypeswrong/cli": "catalog:packages",
-    "@changesets/types": "5.2.1",
+    "@changesets/types": "6.1.0",
     "@size-limit/esbuild": "catalog:packages",
     "@size-limit/esbuild-why": "catalog:packages",
     "@size-limit/file": "catalog:packages",
