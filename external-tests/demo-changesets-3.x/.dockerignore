@@ -1,23 +1,20 @@
-## Debug info for external-tests
+Dockerfile.external-test
 
-external-tests/*/CHANGELOG-diff.diff
+#
+# Everything below this point is copied from the root .gitignore
+#
 
-###############################################################################
+# IDEs, etc
 
-# IDE settings
 .vscode/*
 !.vscode/extensions.json
-!.vscode/settings.json
-.idea/
-
-# project files
-
-*.local.*
+.idea
+.DS_Store
 *.suo
 *.ntvs*
 *.njsproj
 *.sln
-*.swp
+*.sw?
 
 # dependencies
 
@@ -41,29 +38,16 @@ playwright-report/
 
 # build output
 
-*.log
 *.tsbuildinfo
 
-.astro/
 .cache/
-.cache-loader/
-.docusaurus/
 .next/
-.nitro/
-.nuxt/
-.output/
-.react-router/
-.svelte-kit/
-.turbo/
-.wrangler/
-_fresh/
 build/
 dist/
 dist-ssr/
 legacy-types/
 out/
 public/build/
-packages/*/*.tgz
 
 # storybook
 
@@ -73,14 +57,18 @@ storybook-static/
 
 external-tests/*/.yalc/
 
+# log files
+
+lerna-debug.log*
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
 # misc
 
-.DS_Store
-.env
 .env.local
 .env*.local
-.env.production
 .vercel
 *.pem
 next-env.d.ts
-Thumbs.db

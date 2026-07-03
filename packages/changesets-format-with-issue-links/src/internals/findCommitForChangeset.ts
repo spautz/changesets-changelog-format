@@ -1,14 +1,17 @@
 import path from 'node:path';
 import type { NewChangesetWithCommit } from '@changesets/types';
-import gitlog from 'gitlog';
 
 import type { GitlogOptions } from '../options.js';
+import { getGitlogFn } from './getGitlogFn.js';
+
+type GitlogCommit = Awaited<ReturnType<ReturnType<typeof getGitlogFn>>>[number];
 
 const findCommitForChangeset = async (
   changesetEntry: NewChangesetWithCommit,
   gitlogOptions: GitlogOptions,
-): Promise<ReturnType<typeof gitlog> | null> => {
+): Promise<GitlogCommit | null> => {
   const { id } = changesetEntry;
+  const gitlog = getGitlogFn();
 
   // @TODO: Split between modes: predefined commit, file-add, file-update
 

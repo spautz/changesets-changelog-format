@@ -64,3 +64,55 @@ jobs:
       - name: Run CI checks for package
         working-directory: packages/${{ matrix.package-name }}
         run: pnpm run all:ci
+
+#  demo-ci:
+#    name: Demo CI
+#    runs-on: ubuntu-latest
+#    permissions:
+#      contents: read
+#    strategy:
+#      matrix:
+#        demo-name: [hello-world-cli, hello-world-ui]
+#
+#    steps:
+#      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+#        with:
+#          persist-credentials: false
+#
+#      - uses: ./.github/reusable-workflows/setup-repo
+#        with:
+#          node-version: lts/*
+#          use-lockfile: false
+#
+#      - name: Run CI checks for demo
+#        working-directory: demos/${{ matrix.demo-name }}
+#        run: pnpm run all:ci
+
+  external-test-ci:
+    name: External-Test CI
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    strategy:
+      matrix:
+        external-test-name: ["demo-changesets-2.x", "demo-changesets-3.x"]
+
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          persist-credentials: false
+
+      - uses: ./.github/reusable-workflows/setup-repo
+        with:
+          node-version: nvmrc
+          use-lockfile: false
+
+      - name: Yalc publish
+        env:
+          EXTERNAL_TEST_NAME: ${{ matrix.external-test-name }}
+        run: ./scripts/update-external-test.sh "$EXTERNAL_TEST_NAME"
+
+      - name: Run CI checks for external-test
+        env:
+          EXTERNAL_TEST_NAME: ${{ matrix.external-test-name }}
+        run: ./scripts/run-external-test.sh "$EXTERNAL_TEST_NAME" run-ci

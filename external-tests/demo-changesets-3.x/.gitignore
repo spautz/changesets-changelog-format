@@ -1,9 +1,3 @@
-## Debug info for external-tests
-
-external-tests/*/CHANGELOG-diff.diff
-
-###############################################################################
-
 # IDE settings
 .vscode/*
 !.vscode/extensions.json

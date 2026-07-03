@@ -26,6 +26,8 @@ pushd "$EXTERNAL_TEST_DIR"
 create_minor_change() {
   local commit_message="$1"
   local changelog_summary="$2"
+  local package_name="@private/external-test--demo-changesets-2.x"
+  local changeset_file=".changeset/$(date +%s%N)-minor-change.md"
 
   # Work in a feature branch
   local BASE_BRANCH="$(git branch --show-current)"
@@ -43,17 +45,24 @@ create_minor_change() {
     exit 1
   fi
 
-  # `--minor` flag is blocked by https://github.com/changesets/changesets/issues/2134
-  #                          and https://github.com/changesets/changesets/pull/2135
-  pnpm run changelog:add --minor "@private/external-test--basic-demo" --message "$changelog_summary"
+  # Changesets 2.x CLI predates `--minor`, so this test writes file by hand.
+  cat > "$changeset_file" <<EOF
+---
+"$package_name": minor
+---
+
+$changelog_summary
+EOF
 
   # Commit and fast-forward
-  git add src/index.ts .changeset/*.md
+  git add src/index.ts "$changeset_file"
   git status
   git commit -m "$commit_message"
 
-  git checkout $BASE_BRANCH
-  git merge $FEATURE_BRANCH --squash
+  git checkout "$BASE_BRANCH"
+  git merge --ff-only "$FEATURE_BRANCH"
+  LAST_COMMIT_HASH=$(git rev-parse HEAD)
+  git branch -D $FEATURE_BRANCH
 }
 
 assert_diff_contains() {
@@ -61,6 +70,8 @@ assert_diff_contains() {
   if ! grep -Eq "$pattern" ./CHANGELOG-diff.diff; then
     echo
     echo "### Changelog check failed"
+    echo "CHANGELOG.md diff:"
+    git diff CHANGELOG.md
     echo "Missing diff pattern: $pattern"
     echo "git status:"
     git status --short
@@ -72,16 +83,16 @@ assert_diff_contains() {
 # Main body
 
 create_minor_change "Add first demo change (#101)" "First demo minor change"
-FIRST_COMMIT_HASH=$(git rev-parse HEAD)
+FIRST_COMMIT_HASH="$LAST_COMMIT_HASH"
 create_minor_change "Add second demo change (#102)" "Second demo minor change"
-SECOND_COMMIT_HASH=$(git rev-parse HEAD)
+SECOND_COMMIT_HASH="$LAST_COMMIT_HASH"
 
 # Update CHANGELOG.md
 pnpm run release:prep
 
 # Now validate the changes that were made
 git diff ./CHANGELOG.md > ./CHANGELOG-diff.diff
-assert_diff_contains '^\+## 0\.\d+\.0$'
+assert_diff_contains '^\+## 0\.[0-9]+\.0$'
 assert_diff_contains '^\+### Minor Changes$'
 assert_diff_contains "^\\+.*https://example.com/commit/${FIRST_COMMIT_HASH}"
 assert_diff_contains "^\\+.*https://example.com/commit/${SECOND_COMMIT_HASH}"
