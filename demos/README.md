@@ -1,1 +1,2 @@
-Demo app was moved to [external-tests/basic-demo](https://github.com/spautz/changesets-changelog-format/tree/main//external-tests/basic-demo)
+Demo app was moved to:
+* [external-tests/demo-changesets-2.x](https://github.com/spautz/changesets-changelog-format/tree/main//external-tests/demo-changesets-2.x)

@@ -1,12 +1,12 @@
 services:
 
-  basic-demo:
-    profiles: ["basic-demo"]
+  "demo-changesets-2.x":
+    profiles: ["demo-changesets-2.x"]
     build:
-      context: ./external-tests/basic-demo
+      context: external-tests/demo-changesets-2.x
       dockerfile: Dockerfile.external-test
       target: ${DOCKER_BUILD_TARGET:-default}
-    working_dir: /app-basic-demo
+    working_dir: /app-demo-changesets-2.x
     volumes:
-      - ./external-tests/basic-demo/src:/app-basic-demo/src
+      - ./external-tests/demo-changesets-2.x/src:/app-demo-changesets-2.x/src
     init: true

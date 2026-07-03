@@ -45,7 +45,7 @@ create_minor_change() {
 
   # `--minor` flag is blocked by https://github.com/changesets/changesets/issues/2134
   #                          and https://github.com/changesets/changesets/pull/2135
-  pnpm run changelog:add --minor "@private/external-test--basic-demo" --message "$changelog_summary"
+  pnpm run changelog:add --minor "@private/external-test--demo-changesets-2.x" --message "$changelog_summary"
 
   # Commit and fast-forward
   git add src/index.ts .changeset/*.md
