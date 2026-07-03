@@ -52,8 +52,10 @@ create_minor_change() {
   git status
   git commit -m "$commit_message"
 
-  git checkout $BASE_BRANCH
-  git merge $FEATURE_BRANCH --squash
+  git checkout "$BASE_BRANCH"
+  git merge --ff-only "$FEATURE_BRANCH"
+  LAST_COMMIT_HASH=$(git rev-parse HEAD)
+  git branch -D $FEATURE_BRANCH
 }
 
 assert_diff_contains() {
@@ -72,16 +74,16 @@ assert_diff_contains() {
 # Main body
 
 create_minor_change "Add first demo change (#101)" "First demo minor change"
-FIRST_COMMIT_HASH=$(git rev-parse HEAD)
+FIRST_COMMIT_HASH="$LAST_COMMIT_HASH"
 create_minor_change "Add second demo change (#102)" "Second demo minor change"
-SECOND_COMMIT_HASH=$(git rev-parse HEAD)
+SECOND_COMMIT_HASH="$LAST_COMMIT_HASH"
 
 # Update CHANGELOG.md
 pnpm run release:prep
 
 # Now validate the changes that were made
 git diff ./CHANGELOG.md > ./CHANGELOG-diff.diff
-assert_diff_contains '^\+## 0\.\d+\.0$'
+assert_diff_contains '^\+## 0\.[0-9]+\.0$'
 assert_diff_contains '^\+### Minor Changes$'
 assert_diff_contains "^\\+.*https://example.com/commit/${FIRST_COMMIT_HASH}"
 assert_diff_contains "^\\+.*https://example.com/commit/${SECOND_COMMIT_HASH}"
