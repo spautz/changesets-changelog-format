@@ -40,10 +40,10 @@ RUN git commit -m "Initial commit"
 #   'run-ci'  = all project checks, but for CI
 
 FROM base-app AS run-all
-CMD ["bash", "./run-checks.sh"]
+CMD ["bash", "./external-test-checks.sh"]
 
 FROM base-app AS run-ci
-CMD ["bash", "./run-checks.sh"]
+CMD ["bash", "./external-test-checks.sh"]
 
 
 FROM run-all AS default
