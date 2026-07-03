@@ -1,0 +1,53 @@
+# syntax=docker/dockerfile:1
+
+# Local packages must be Yalc'd into this directory BEFORE building this image
+# (via ../../scripts/update-external-tests.sh)
+
+ARG NODE_VERSION=24
+
+FROM node:${NODE_VERSION}-bullseye-slim AS base-environment
+WORKDIR /app-demo-changesets-3.x
+RUN corepack enable
+RUN apt-get update \
+  && apt-get install -y --no-install-recommends git \
+  && rm -rf /var/lib/apt/lists/*
+
+FROM base-environment AS base-deps
+
+COPY package.json pnpm-lock.yam[l]  ./
+COPY .yalc  .yalc/
+RUN pnpm install
+
+FROM base-deps AS base-app
+
+COPY . ./
+# We need to reapply the lockfile from deps, in case it changed
+COPY --from=base-deps /app-demo-changesets-3.x/pnpm-lock.yaml ./
+
+RUN git init -b main \
+  && git config user.email "changesets-demo@example.com" \
+  && git config user.name "Changesets Demo" \
+  && git config commit.gpgsign false
+
+RUN pnpm run clean
+RUN pnpm run changelog:reset
+
+RUN git add .
+RUN git commit -m "Initial commit"
+
+# A target for each check or test case. These are just for readability.
+#   'run-all' = all project checks
+#   'run-ci'  = all project checks, but for CI
+
+FROM base-app AS run-all
+CMD ["bash", "./run-checks.sh"]
+
+FROM base-app AS run-ci
+CMD ["bash", "./run-checks.sh"]
+
+
+FROM run-all AS default
+LABEL external-test-name="demo-changesets-3.x"
+LABEL external-test.artifact.1="/app-demo-changesets-3.x/pnpm-lock.yaml"
+LABEL external-test.artifact.2="/app-demo-changesets-3.x/CHANGELOG.md"
+LABEL external-test.artifact.3="/app-demo-changesets-3.x/CHANGELOG-diff.diff"

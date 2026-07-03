@@ -1,0 +1,10 @@
+{
+  "version": "v1",
+  "packages": {
+    "changesets-format-with-issue-links": {
+      "signature": "6f7bbf34ea8e3dc4932421cc2f340649",
+      "file": true,
+      "replaced": "workspace:*"
+    }
+  }
+}

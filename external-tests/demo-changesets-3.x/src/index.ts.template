@@ -1,0 +1,4 @@
+// To create git changes we'll just update this timestamp
+const lastTimestamp = {CURRENT_TIMESTAMP};
+
+export { lastTimestamp };

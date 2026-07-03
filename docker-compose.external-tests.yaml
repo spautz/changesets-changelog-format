@@ -10,3 +10,14 @@ services:
     volumes:
       - ./external-tests/demo-changesets-2.x/src:/app-demo-changesets-2.x/src
     init: true
+
+  "demo-changesets-3.x":
+    profiles: ["demo-changesets-3.x"]
+    build:
+      context: external-tests/demo-changesets-3.x
+      dockerfile: Dockerfile.external-test
+      target: ${DOCKER_BUILD_TARGET:-default}
+    working_dir: /app-demo-changesets-3.x
+    volumes:
+      - ./external-tests/demo-changesets-3.x/src:/app-demo-changesets-3.x/src
+    init: true
