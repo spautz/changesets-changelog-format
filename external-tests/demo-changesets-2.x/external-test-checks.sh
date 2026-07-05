@@ -92,10 +92,12 @@ pnpm run release:prep
 
 # Now validate the changes that were made
 git diff ./CHANGELOG.md > ./CHANGELOG-diff.diff
+cat ./CHANGELOG-diff.diff
 assert_diff_contains '^\+## 0\.[0-9]+\.0$'
 assert_diff_contains '^\+### Minor Changes$'
 assert_diff_contains "^\\+.*https://example.com/commit/${FIRST_COMMIT_HASH}"
 assert_diff_contains "^\\+.*https://example.com/commit/${SECOND_COMMIT_HASH}"
+echo "✅️ Changelog-diff checks passed"
 
 ###################################################################################################
 # Standard teardown for all external-test scripts

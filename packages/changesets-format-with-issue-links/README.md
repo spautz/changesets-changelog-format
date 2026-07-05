@@ -1,9 +1,11 @@
 # Changesets Format with Git Links
 
 [![npm version](https://img.shields.io/npm/v/changesets-format-with-issue-links.svg)](https://www.npmjs.com/package/changesets-format-with-issue-links)
-[![build status](https://github.com/spautz/changesets-changelog-format/workflows/CI/badge.svg)](https://github.com/spautz/changesets-changelog-format/actions)
+[![readme](https://img.shields.io/badge/-readme-informational)](https://github.com/spautz/changesets-changelog-format/blob/main/packages/changesets-format-with-issue-links/README.md)
+[![build status](https://github.com/spautz/changesets-changelog-format/actions/workflows/ci.yml/badge.svg)](https://github.com/spautz/changesets-changelog-format/actions)
 [![test coverage](https://img.shields.io/coveralls/github/spautz/changesets-changelog-format/main.svg)](https://coveralls.io/github/spautz/changesets-changelog-format?branch=main)
-[![dependencies status](https://img.shields.io/librariesio/release/npm/changesets-format-with-issue-links.svg)](https://libraries.io/github/spautz/changesets-changelog-format)
+[![repo vulnerabilities](https://snyk.io/test/github/spautz/changesets-changelog-format/badge.svg)](https://snyk.io/test/github/spautz/changesets-changelog-format)
+[![gzip size](https://img.shields.io/bundlephobia/minzip/changesets-format-with-issue-links.svg)](https://bundlephobia.com/package/changesets-format-with-issue-links@latest)
 
 ## What is this?
 
