@@ -2,7 +2,7 @@
   "version": "v1",
   "packages": {
     "changesets-format-with-issue-links": {
-      "signature": "bda89247fbc38120c17d28b5cc91a6fa",
+      "signature": "206d69b392370153aa5fd0ae92fa5463",
       "file": true,
       "replaced": "workspace:*"
     }
