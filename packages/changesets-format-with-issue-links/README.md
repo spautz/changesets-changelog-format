@@ -5,11 +5,10 @@
 [![build status](https://github.com/spautz/changesets-changelog-format/actions/workflows/ci.yml/badge.svg)](https://github.com/spautz/changesets-changelog-format/actions)
 [![test coverage](https://img.shields.io/coveralls/github/spautz/changesets-changelog-format/main.svg)](https://coveralls.io/github/spautz/changesets-changelog-format?branch=main)
 [![repo vulnerabilities](https://snyk.io/test/github/spautz/changesets-changelog-format/badge.svg)](https://snyk.io/test/github/spautz/changesets-changelog-format)
-[![gzip size](https://img.shields.io/bundlephobia/minzip/changesets-format-with-issue-links.svg)](https://bundlephobia.com/package/changesets-format-with-issue-links@latest)
 
 ## What is this?
 
-[Atlassian Changesets](https://github.com/changesets/changesets) is a changelog management tool. Its default formatter
+[Changesets](https://github.com/changesets/changesets) is a changelog management tool. Its default formatter
 generates a plain list of changes, without issue links.
 
 This package adds links to the git commits, issues, and pull requests where your changesets were added.
@@ -135,13 +134,13 @@ Use `\\$` to escape the dollar sign character if you do not want it to be treate
 
 Information from the changeset entry:
 
-| Variable name       | Notes                                                                                                                                                                                                                                             |
-| :------------------ | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `$changesetTitle`   | The summary (first line) of your Changesets entry                                                                                                                                                                                                 |
-| `$changesetBody`    | All text after the first line of your Changesets entry, trimmed                                                                                                                                                                                   |
-| `$changesetRawBody` | The entire text of your Changesets entry                                                                                                                                                                                                          |
-| `$versionType`      | The semver bump type: `"major"`, `"minor"`, `"patch"`, or `"none"`                                                                                                                                                                                |
-| `$changesetInfo`    | Object containing all of the above, plus any other [information from Changesets](https://github.com/changesets/changesets/blob/main/packages/types/src/index.ts#L28-L31) (e.g.,`${changesetInfo.changesetTitle}`, `${changesetInfo.versionType}`) |
+| Variable name       | Notes                                                                                                                                                                                                                                                                            |
+| :------------------ |:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `$changesetTitle`   | The summary (first line) of your Changesets entry                                                                                                                                                                                                                                |
+| `$changesetBody`    | All text after the first line of your Changesets entry, trimmed                                                                                                                                                                                                                  |
+| `$changesetRawBody` | The entire text of your Changesets entry                                                                                                                                                                                                                                         |
+| `$versionType`      | The semver bump type: `"major"`, `"minor"`, `"patch"`, or `"none"`                                                                                                                                                                                                               |
+| `$changesetInfo`    | Object containing all of the above, plus any other information from [Changesets' `NewChangesetWithCommit` type](https://github.com/changesets/changesets/blob/main/packages/types/src/index.ts) |
 
 Information from the git commit when the changeset was added:
 
