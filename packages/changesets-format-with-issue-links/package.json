@@ -86,7 +86,7 @@
   },
   "devDependencies": {
     "@arethetypeswrong/cli": "catalog:packages",
-    "@changesets/types": "6.1.0",
+    "@changesets/types": "7.0.0-next.6",
     "@size-limit/esbuild": "catalog:packages",
     "@size-limit/esbuild-why": "catalog:packages",
     "@size-limit/file": "catalog:packages",
@@ -99,7 +99,7 @@
     "tsdown": "catalog:packages"
   },
   "peerDependencies": {
-    "@changesets/cli": "^2.0.0"
+    "@changesets/cli": "^2.0.0 || ^3.0.0"
   },
   "size-limit": [
     {

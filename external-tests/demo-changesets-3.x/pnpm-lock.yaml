@@ -123,7 +123,7 @@ packages:
   changesets-format-with-issue-links@file:.yalc/changesets-format-with-issue-links:
     resolution: {directory: .yalc/changesets-format-with-issue-links, type: directory}
     peerDependencies:
-      '@changesets/cli': ^2.0.0
+      '@changesets/cli': ^2.0.0 || ^3.0.0
 
   debug@4.4.3:
     resolution: {integrity: sha512-RGwwWnwQvkVfavKVt22FGLw+xYSdzARwm0ru6DhTVA3umU5hZc28V3kO4stgYryrTlLpuvgI9GiijltAjNbcqA==}

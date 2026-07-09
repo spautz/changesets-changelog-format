@@ -11,6 +11,9 @@ importers:
       '@changesets/cli':
         specifier: 2.31.0
         version: 2.31.0
+      '@changesets/types':
+        specifier: 6.1.0
+        version: 6.1.0
       changesets-format-with-issue-links:
         specifier: file:.yalc/changesets-format-with-issue-links
         version: file:.yalc/changesets-format-with-issue-links(@changesets/cli@2.31.0)
@@ -149,7 +152,7 @@ packages:
   changesets-format-with-issue-links@file:.yalc/changesets-format-with-issue-links:
     resolution: {directory: .yalc/changesets-format-with-issue-links, type: directory}
     peerDependencies:
-      '@changesets/cli': ^2.0.0
+      '@changesets/cli': ^2.0.0 || ^3.0.0
 
   chardet@2.2.0:
     resolution: {integrity: sha512-rddelWYNPRrXq6PtNEN2S3f6t9ILzvqaN5pVgi4kqt9jHQaXIial9PznB5iSPVlQSLNaaH22ItWz3EJtQ10+OA==}

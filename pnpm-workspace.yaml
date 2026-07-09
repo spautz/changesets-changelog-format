@@ -8,6 +8,9 @@ trustPolicy: no-downgrade
 trustPolicyIgnoreAfter: 129600 # 90 days
 verifyDepsBeforeRun: error
 
+minimumReleaseAgeExclude:
+  "@changesets/*"
+
 allowBuilds:
   "core-js": false
   "esbuild@0.28.1": true
