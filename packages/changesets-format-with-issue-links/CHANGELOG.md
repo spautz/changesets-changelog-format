@@ -1,5 +1,27 @@
 # Changelog
 
+## 1.0.0
+
+### Major Changes
+
+- Realign with https://github.com/spautz/package-template/ (commit 34231bbd) ([#49](https://github.com/spautz/changesets-changelog-format/issues/49)) ([3d8fdf8](https://github.com/spautz/changesets-changelog-format/commit/3d8fdf8c70e45962c043fb1255cd7ddadccfe746))
+  
+  This includes all engines, devDependencies, scripts, hooks, build tools, and Github Actions.
+  
+  The only code changes are to satisfy linting rules. This does include updates to the targeted ES version,
+  so it will be a breaking change -- but no functional changes are expected.
+- Prepare for 1.0 release ([#12](https://github.com/spautz/changesets-changelog-format/issues/12)) ([b87919d](https://github.com/spautz/changesets-changelog-format/commit/b87919df0379ab18c0a7441dd1a3a615c58b6d9d))
+
+### Minor Changes
+
+- Enable declarationMap for build ([#11](https://github.com/spautz/changesets-changelog-format/issues/11)) ([bdca3af](https://github.com/spautz/changesets-changelog-format/commit/bdca3af2248b812c2de6381e716efe8b1ba803d6))
+- Mark compatibility against Changesets 3 ([#53](https://github.com/spautz/changesets-changelog-format/issues/53)) ([b5f8f6a](https://github.com/spautz/changesets-changelog-format/commit/b5f8f6a6872ac96525b53d89ab23485ac495e582))
+
+### Patch Changes
+
+- Update README info and links ([#52](https://github.com/spautz/changesets-changelog-format/issues/52)) ([da10d70](https://github.com/spautz/changesets-changelog-format/commit/da10d70eae1d969b6ce758b3b7613c59d402203c))
+- Confirm compatibility with Node 20 ([#11](https://github.com/spautz/changesets-changelog-format/issues/11)) ([bdca3af](https://github.com/spautz/changesets-changelog-format/commit/bdca3af2248b812c2de6381e716efe8b1ba803d6))
+
 ## 0.3.0
 
 ### Breaking Changes
