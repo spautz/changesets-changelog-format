@@ -258,6 +258,9 @@ catalogs:
 overrides:
   esbuild: 0.28.1
 
+patchedDependencies:
+  changesets-format-with-issue-links@0.3.0: 3bedcc57f321e9a5a101ec3bd59748fdc909f7aa025ec2c69cdc56193587c80f
+
 importers:
 
   .:
@@ -273,7 +276,7 @@ importers:
         version: 3.0.1
       changesets-format-with-issue-links:
         specifier: next
-        version: 0.3.0(@changesets/cli@3.0.1)(supports-color@7.2.0)
+        version: 0.3.0(patch_hash=3bedcc57f321e9a5a101ec3bd59748fdc909f7aa025ec2c69cdc56193587c80f)(@changesets/cli@3.0.1)(supports-color@7.2.0)
       glob:
         specifier: 13.0.6
         version: 13.0.6
@@ -3126,7 +3129,7 @@ snapshots:
 
   chalk@5.6.2: {}
 
-  changesets-format-with-issue-links@0.3.0(@changesets/cli@3.0.1)(supports-color@7.2.0):
+  changesets-format-with-issue-links@0.3.0(patch_hash=3bedcc57f321e9a5a101ec3bd59748fdc909f7aa025ec2c69cdc56193587c80f)(@changesets/cli@3.0.1)(supports-color@7.2.0):
     dependencies:
       '@changesets/cli': 3.0.1
       gitlog: 4.0.8(supports-color@7.2.0)
