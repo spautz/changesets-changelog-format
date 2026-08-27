@@ -10,7 +10,6 @@
   
   The only code changes are to satisfy linting rules. This does include updates to the targeted ES version,
   so it will be a breaking change -- but no functional changes are expected.
-- Prepare for 1.0 release ([#12](https://github.com/spautz/changesets-changelog-format/issues/12)) ([b87919d](https://github.com/spautz/changesets-changelog-format/commit/b87919df0379ab18c0a7441dd1a3a615c58b6d9d))
 
 ### Minor Changes
 
@@ -20,6 +19,7 @@
 ### Patch Changes
 
 - Update README info and links ([#52](https://github.com/spautz/changesets-changelog-format/issues/52)) ([da10d70](https://github.com/spautz/changesets-changelog-format/commit/da10d70eae1d969b6ce758b3b7613c59d402203c))
+- Prepare for 1.0 release ([#12](https://github.com/spautz/changesets-changelog-format/issues/12)) ([b87919d](https://github.com/spautz/changesets-changelog-format/commit/b87919df0379ab18c0a7441dd1a3a615c58b6d9d))
 - Confirm compatibility with Node 20 ([#11](https://github.com/spautz/changesets-changelog-format/issues/11)) ([bdca3af](https://github.com/spautz/changesets-changelog-format/commit/bdca3af2248b812c2de6381e716efe8b1ba803d6))
 
 ## 0.3.0
