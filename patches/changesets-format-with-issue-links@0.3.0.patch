@@ -1,0 +1,26 @@
+diff --git a/dist/index.js b/dist/index.js
+index e64f85d36d389f1c3daee7f3cba61c37f3ca8628..3ca806ed55a6889013e5ab268735e51503b559e1 100644
+--- a/dist/index.js
++++ b/dist/index.js
+@@ -14,8 +14,8 @@ var findCommitForChangeset = async (changesetEntry, gitlogOptions) => {
+ };
+ 
+ // src/internals/processTemplate.ts
+-import get from "lodash/get";
+-import has from "lodash/has";
++import get from "lodash/get.js";
++import has from "lodash/has.js";
+ var simpleVariableRegex = /(?!\\\$)\$(\w+)/g;
+ var wrappedVariableRegex = /(?!\\\$)\${([^}]+)}/g;
+ var processVariable = (data, _matchedText, varName) => {
+@@ -41,8 +41,8 @@ var processTemplate = (template, data) => {
+ };
+ 
+ // src/options.ts
+-import merge from "lodash/merge";
+-import uniq from "lodash/uniq";
++import merge from "lodash/merge.js";
++import uniq from "lodash/uniq.js";
+ var defaultOptions = {
+   repoBaseUrl: "https://example.com",
+   changesetTemplate: "- ${changesetTitle}${issue}${commit}${changesetBody}",
