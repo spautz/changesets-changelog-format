@@ -272,7 +272,7 @@ importers:
         specifier: 3.0.1
         version: 3.0.1
       changesets-format-with-issue-links:
-        specifier: 0.3.0
+        specifier: next
         version: 0.3.0(@changesets/cli@3.0.1)(supports-color@7.2.0)
       glob:
         specifier: 13.0.6

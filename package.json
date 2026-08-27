@@ -83,7 +83,7 @@
     "@arethetypeswrong/cli": "catalog:packages",
     "@biomejs/biome": "2.5.10",
     "@changesets/cli": "3.0.1",
-    "changesets-format-with-issue-links": "0.3.0",
+    "changesets-format-with-issue-links": "next",
     "glob": "13.0.6",
     "husky": "9.1.7",
     "jsdom": "30.0.1",
@@ -105,5 +105,13 @@
     "*": [
       "biome check --write --no-errors-on-unmatched"
     ]
+  },
+  "pnpm": {
+    "COMMENT_pnpm_overrides_1": "This is a quick way to switch back and forth between different",
+    "COMMENT_pnpm_overrides_2": "versions of skip-the-build in local dev. (We don't use catalogs",
+    "COMMENT_pnpm_overrides_3": "because catalogs don't allow 'workspace:')",
+    "overrides_DISABLED": {
+      "changesets-format-with-issue-links": "workspace:"
+    }
   }
 }
